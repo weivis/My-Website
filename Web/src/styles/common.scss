@@ -1,0 +1,33 @@
+/*reset*/
+html, body {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  min-width: 900px;
+}
+
+a, li, ul{
+  text-decoration:none;
+  list-style-type:none;
+}
+
+body {
+    height: 100%;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Arial, sans-serif;
+  }
+
+.main-content.width-normal{
+  max-width: 1600px;
+  width: 90%;
+  margin: 0 auto;
+}
+
+.main-content.width-max{
+  max-width: 1700px;
+  width: 90%;
+  margin: 0 auto;
+}
