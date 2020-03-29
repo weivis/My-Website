@@ -12,7 +12,7 @@
     export default {
         data() {
             return{
-                nav:this.COMMON.L_Nav
+                nav:this.Common.L_Nav
             }
         },
         name:'Lnav'

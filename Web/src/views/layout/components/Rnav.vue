@@ -12,7 +12,7 @@
     export default {
         data() {
             return{
-                nav:this.COMMON.R_Nav
+                nav:this.Common.R_Nav
             }
         },
         name:'Rnav'

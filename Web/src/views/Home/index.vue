@@ -4,6 +4,7 @@
     <firstscreen/>
     <gutterlicard/>
     <myintroduce/>
+    <dynamics/>
   </div>
 
 </template>
@@ -12,13 +13,15 @@
 import firstscreen from './FirstScreen.vue'
 import gutterlicard from '../../components/GutterLiCard.vue'
 import myintroduce from './MyIntroduce.vue'
+import dynamics from './Dynamics.vue'
 
 export default {
   name: 'Home',
   components: {
     firstscreen,
     gutterlicard,
-    myintroduce
+    myintroduce,
+    dynamics
   }
 }
 </script>

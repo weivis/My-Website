@@ -4,7 +4,6 @@ import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 
 import '@/styles/common.scss' // global css
-import global from './Common.vue'
 import VueParticles from 'vue-particles'
 
 import App from './App.vue'
@@ -13,7 +12,8 @@ import store from './store'
 
 Vue.config.productionTip = false
 
-Vue.prototype.COMMON = global
+import Common from './Common'
+Vue.prototype.Common = Common
 
 Vue.use(ElementUI);
 Vue.use(VueParticles)
@@ -24,3 +24,5 @@ new Vue({
   store,
   render: h => h(App)
 }).$mount('#app')
+
+// console.log(Vue.prototype.COMMON)

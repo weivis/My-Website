@@ -73,7 +73,7 @@ export default {
         max-width:381px;min-width:100%;  
     }
     .item-imgbox{
-        max-height: 213px;overflow: hidden;
+        max-height: 213px;overflow: hidden;border-radius: 4px
     }
     .item-img{
         width:100%

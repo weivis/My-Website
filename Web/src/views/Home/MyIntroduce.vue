@@ -4,7 +4,7 @@
       <div class="modulecontent-width">
         <div class="myinfobox">
           <div class="floadhead">
-            <img class="floadhead-img" :src="this.COMMON.httpUrl + '/static/head.png'" />
+            <img class="floadhead-img" :src="this.Common.httpUrl + '/static/head.png'" />
           </div>
           <div class="myinforightbox">
             <div class="myinfo-myname">{{myname}}</div>
@@ -18,14 +18,14 @@
               <div class="list">
 
                 <div class="list-page">
-                  <div class="list-pagename">个人成就</div>
+                  <div class="list-pagename">个人介绍</div>
                   <div class="list-pageitembox">
                     本人初一因校园暴力被欺负缀学, 凭自己努力自学各种技能, 很喜欢动漫因此学会了视频制作和平面设计, 也因此就业过, 后来为了开发自己的动漫网站等接触了程序这行, 如今在一家科技公司担任开发
                   </div>
                 </div>
 
                 <div class="list-page">
-                  <div class="list-pagename">个人名誉</div>
+                  <div class="list-pagename">个人成就</div>
                   <div class="list-pageitembox">
                     <div class="list-item">
                       <el-row :gutter="20">
@@ -180,6 +180,7 @@ export default {
     width: 150px;
     margin-top: -30px;
     float: left;
+    border-radius: 4px
   }
   .floadhead-img {
     width: 100%;
@@ -208,6 +209,7 @@ export default {
   .list-imgitem-img{
     width: 100%;
     height: 100%;
+    padding-top: 10px;
   }
   .list-imgitem-title{
     padding: 10px;text-align: center;font-size: 12px;

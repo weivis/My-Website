@@ -37,7 +37,7 @@
       </div>
 
       <div class='right-imgbox'>
-        <img :src="this.COMMON.httpUrl + '/static/1.png'" />
+        <img :src="this.Common.httpUrl + '/static/1.png'" />
       </div>
     </div>
   </div>
@@ -65,10 +65,17 @@ export default {
 <style lang="scss" scoped>
   #particles-js{
     width: 100%;
-    position:absolute;z-index:0
+    position:absolute;z-index:10
   }
 
   .FirstScreen{
+    .left-sidebar{
+      z-index: 20;
+    }
+    .right-imgbox{
+      z-index: 0;
+    }
+
     overflow: hidden;
     position: relative;
     .contentpage{
@@ -106,10 +113,11 @@ export default {
       background-color: #cc0152;
       font-weight: bold;
       font-size: 14px;
+      border-radius: 4px
     }
     .s2{
       background-color: initial !important ;color: #cc0152 !important;
     }
-    .right-imgbox{height:100%;float:right;margin-right:50px}
+    .right-imgbox{height:100%;float:right;margin-right:-80px}
   }
 </style>
