@@ -1,6 +1,7 @@
 <script type="text/javascript">
     // 定义一些公共的属性和方法
     const httpUrl = 'http://127.0.0.1:8080'
+    const LoginUrl = '/login'
 
     const L_Nav = [
                     {link:'/works',title:'作品'},
@@ -19,6 +20,7 @@
     }
     // 暴露出这些属性和方法
     export default {
+        LoginUrl,
         httpUrl,
         L_Nav,
         R_Nav,

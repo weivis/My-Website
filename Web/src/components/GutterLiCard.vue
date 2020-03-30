@@ -7,14 +7,14 @@
       </div>
 
     <el-row :gutter="30">
-        <div class="block" v-for="fit in data" :key="fit">
+        <div class="block" v-for="(item, index) in data" :key="index">
             <el-col :span="6">
-                <a :href="fit.link">
+                <a :href="item.link">
                     <div class="item-imgbox">
-                        <el-image class="item-img" :src="fit.img"></el-image>
+                        <el-image class="item-img" :src="item.img"></el-image>
                     </div>
-                    <div class="item-title">{{ fit.title }}</div>
-                    <div class="item-introduce">{{ fit.introduce }}</div>
+                    <div class="item-title">{{ item.title }}</div>
+                    <div class="item-introduce">{{ item.introduce }}</div>
                     <div class="item-linkbutt">了解更多 ></div>
                 </a>
             </el-col>

@@ -13,8 +13,13 @@ import router from './router'
 
 Vue.config.productionTip = false
 
+import * as StoreUser from './store/user'
 import Common from './Common'
+import Auth from './Auth'
+
 Vue.prototype.Common = Common
+Vue.prototype.Auth = Auth
+Vue.prototype.UserInfo = StoreUser.QueryUserInfo
 
 Vue.use(ElementUI);
 Vue.use(VueParticles)
@@ -22,7 +27,6 @@ Vue.use(VueParticles)
 new Vue({
   el: '#app',
   router,
-  // store, 取消vuex
   render: h => h(App)
 }).$mount('#app')
 

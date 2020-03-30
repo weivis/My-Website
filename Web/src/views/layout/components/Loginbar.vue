@@ -1,17 +1,16 @@
 <template>
   <div class="HeaderLoginbar">
-
-    <div class="login">
+    <div class="userbar" v-if="AuthUser">
         <a href="/">
-        <div class="visitor_login">游客登录</div>
+        <div class="username">
+            <span>欢迎你: {{UserData.UserName}}</span>
+        </div>
         </a>
     </div>
 
-    <div class="userbar">
-        <a href="/">
-        <div class="username">
-            <span>欢迎你: 唯酱</span>
-        </div>
+    <div class="login" v-else>
+        <a :href="loginurl">
+        <div class="visitor_login">游客登录</div>
         </a>
     </div>
 
@@ -20,8 +19,19 @@
 <script>
 export default {
   name: "HeaderLoginbar",
+  data() {
+    return {
+      AuthUser:'',
+      loginurl:'',
+      UserData:''
+    }
+  },
   methods: {
-    //事件处理器
+  },
+  created:function(){
+    this.AuthUser = this.Auth.AuthUser()
+    this.loginurl = this.Common.LoginUrl
+    this.UserData = this.UserInfo()
   }
 };
 </script>
