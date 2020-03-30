@@ -4,9 +4,11 @@
             <div class="content-libox">
                 <a href="/">
                     <img class="logo" :src="this.Common.httpUrl + '/static/logo.png'">
-                    <div class="comname">WeiVi dr</div>
+                    <div class="comname">WeiVi rd</div>
                 </a>
+                <div class="pagename">{{$route.meta.pagename}}</div>
                 <layout-lnav/>
+                <layout-loginbar/>
                 <layout-rnav/>
             </div>
         </div>
@@ -48,19 +50,31 @@
         font-weight:300;
         color: #000;
     }
+    .pagename{
+        border-left: 2px solid #565656;
+        margin-left: 23px;
+        padding-left: 23px;
+        font-size: 16px;
+        height: 20px;
+        margin-top: 2.5px;
+        line-height: 22.5px;
+        float: left;
+    }
 }
 </style>
 
 <script>
 import Lnav from './Lnav.vue'
 import Rnav from './Rnav.vue'
+import Loginbar from './Loginbar.vue'
     export default {
         name:'Home',
         methods: { //事件处理器
         },
         components: { //定义组件
             'layout-lnav':Lnav,
-            'layout-rnav':Rnav
+            'layout-rnav':Rnav,
+            'layout-loginbar':Loginbar
         },
         created() { //生命周期函数
 

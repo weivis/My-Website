@@ -3,7 +3,7 @@
     const httpUrl = 'http://127.0.0.1:8080'
 
     const L_Nav = [
-                    {link:'/',title:'作品'},
+                    {link:'/works',title:'作品'},
                     {link:'/',title:'文章'},
                     {link:'/',title:'项目'}
                 ]
