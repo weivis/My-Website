@@ -20,6 +20,9 @@ import Auth from './Auth'
 Vue.prototype.Common = Common
 Vue.prototype.Auth = Auth
 Vue.prototype.UserInfo = StoreUser.QueryUserInfo
+Vue.prototype.LoginUserInfo = StoreUser.StoreUserInfo
+Vue.prototype.LogoutUserInfo = StoreUser.RemoveUserInfo
+Vue.prototype.LoginStatus = Auth.AuthUser
 
 Vue.use(ElementUI);
 Vue.use(VueParticles)

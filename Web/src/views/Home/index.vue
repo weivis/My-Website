@@ -1,12 +1,15 @@
 <template>
-
-  <div class="home">
-    <firstscreen/>
-    <gutterlicard/>
-    <myintroduce/>
-    <dynamics/>
-  </div>
-
+  <transition
+    name="fade-transform"
+    mode="out-in"
+  >
+    <div class="home">
+      <firstscreen/>
+      <gutterlicard/>
+      <myintroduce/>
+      <dynamics/>
+    </div>
+  </transition>
 </template>
 
 <script>
@@ -22,6 +25,13 @@ export default {
     gutterlicard,
     myintroduce,
     dynamics
+  },
+  created(){
+    if (this.$route.params){
+      if (this.$route.params.topage == 'login'){
+        this.$router.go(0)
+      }
+    }
   }
 }
 </script>

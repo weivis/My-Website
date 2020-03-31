@@ -30,6 +30,14 @@
     z-index: 999;
 }
 
+.layout-header{
+    // position: absolute !important;
+    // top: 30px !important;
+    // border-bottom: 0 !important;
+    box-shadow: initial !important;
+    // background-color: initial !important;
+  }
+
 .header-content{
     // width: 100%;
     margin: 0 auto;

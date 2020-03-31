@@ -13,7 +13,7 @@ const routes = [
     children: [
       {
         path: '/',
-        name: 'index',
+        name: 'Home',
         component: () => import('@/views/Home/index'),
         meta: { pagename: 'My Website', title:'WeiVi的个人主页'}
       }

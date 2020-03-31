@@ -54,6 +54,12 @@ export default {
     loginstart(){
       console.log(this.email)
       console.log(this.password)
+      this.Auth.Login_user('weivi')
+      this.LoginUserInfo('WeiVi',1,'1.png')
+      if (this.LoginStatus()){
+        // this.$router.push({ name: "Home" });
+        this.$router.push({name: "Home", params: {topage:'login'}})
+      }
     }
   },
   components: {
@@ -70,7 +76,7 @@ export default {
   }
   .layout-header{
     position: absolute !important;
-    top: 30px !important;
+    /* top: 30px !important; */
     border-bottom: 0 !important;
     box-shadow: initial !important;
     background-color: initial !important;

@@ -1,11 +1,17 @@
 <template>
   <div class="HeaderLoginbar">
     <div class="userbar" v-if="AuthUser">
-        <a href="/">
-        <div class="username">
+        <el-dropdown>
+          <span class="el-dropdown-link">
+            欢迎你: {{UserData.UserName}}<i class="el-icon-arrow-down el-icon--right"></i>
+          </span>
+          <el-dropdown-menu slot="dropdown">
+              <el-dropdown-item @click.native="Logout_user">退出登录</el-dropdown-item>
+          </el-dropdown-menu>
+        </el-dropdown>
+        <!-- <div class="username">
             <span>欢迎你: {{UserData.UserName}}</span>
-        </div>
-        </a>
+        </div> -->
     </div>
 
     <div class="login" v-else>
@@ -27,6 +33,18 @@ export default {
     }
   },
   methods: {
+    Logout_user(){
+      console.log('执行')
+      this.Auth.Logout_user()
+      this.LogoutUserInfo()
+      console.log(this.LoginStatus())
+      // this.$router.push('/')
+      if (this.LoginStatus() == null){
+        console.log('退出登录')
+        this.$router.go(0)
+      }
+    }
+    
   },
   created:function(){
     this.AuthUser = this.Auth.AuthUser()
