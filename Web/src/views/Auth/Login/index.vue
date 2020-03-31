@@ -22,19 +22,18 @@
     </vue-particles>
     <div class="content-main main-content width-normal">
       <div class="loginbox">
-        <div class="login-title">游客登陆</div>
+        <div class="login-title">登录你的游客账户</div>
         <el-input v-model="email" class="txt-input" placeholder="Email 邮箱" prefix-icon="el-icon-user"></el-input>
         <el-input v-model="password" class="txt-input" placeholder="Password 密码" prefix-icon="el-icon-key" show-password></el-input>
         <div style="text-align:center;margin-top: 20px;">
-          <el-button type="primary" round align="center">立即登录</el-button>                  
+          <el-button type="primary" round align="center" @click.native="loginstart">立即登录</el-button>                  
         </div>
-        <el-row type="flex" style="margin-top: 20px;" justify="space-around">
-          
-          <el-col></el-col>
-        </el-row>
-        
-        <el-divider></el-divider>
+        <el-divider content-position="center" style="ackground-color: #f0f0f0;">or</el-divider>
+        <div style="text-align:center;margin-top: 20px;">
+          <el-button round align="center">注册</el-button>             
+        </div>
       </div>
+      <div class="image"><el-image :src="image"></el-image></div>
     </div>
   </div>
 
@@ -47,17 +46,27 @@ export default {
   data(){
     return{
       email:'',
-      password:''
+      password:'',
+      image:this.Common.httpUrl + '/static/login.png'
+    }
+  },
+  methods: {
+    loginstart(){
+      console.log(this.email)
+      console.log(this.password)
     }
   },
   components: {
   }
 }
 </script>
-
+<style type="css">
+  .el-divider__text{background-color: #f0f0f0;color: #9e9e9e;}
+</style>
 <style>
   .app-main{
     margin-top: 0px !important;
+    min-height: calc(100vh - 230px) !important;
   }
   .layout-header{
     position: absolute !important;
@@ -78,19 +87,30 @@ export default {
     z-index: 10;
   }
   .Main{
+    .image{
+    position: absolute;
+    width: 40%;
+    max-width: 460px;
+    min-width: 400px;
+    left: 10%;
+    z-index: 0;
+    top: 100px;
+    }
     .content-main{
       position: relative;
       margin-top: 50px;
-      z-index: 20;
+      z-index: 30;
     }
     .loginbox{
+      border-radius: 3px;
       width: 300px;
       height: 300px;
-      z-index: 30;
+      z-index: 999;
       float: right;
       margin-top: 200px;
-      background-color:rgba(0, 0, 0, 0.06);
-      margin-right: 50px;
+      // background-color:rgba(0, 0, 0, 0.06);
+      background-color: #f0f0f0;
+      margin-right: 10%;
       padding: 20px;
     }
     .login-title{
