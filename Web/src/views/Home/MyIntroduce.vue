@@ -145,7 +145,7 @@ export default {
 .MyIntroduce {
   margin-top: 130px;
   width: 100%;
-  height: 715px;
+  min-height: 715px;
   background-color: #fafafa;
   border-top: 1px solid #f4f4f4;
   border-bottom: 1px solid #f4f4f4;

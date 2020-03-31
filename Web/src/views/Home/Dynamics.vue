@@ -97,9 +97,6 @@ export default {
     }
   },
 }
-// console.log(this.path)
-
-
 </script>
 
 <style lang="scss" scoped>
@@ -123,12 +120,12 @@ export default {
     height: 500px;
   }
   .contentl{
-    width: 49%;
+    width: 48%;
     height: 100%;
     float: left;
   }
   .contentr{
-    width: 49%;
+    width: 48%;
     height: 100%;
     border-left: 1px solid #e9e9e9;
     float: right;
@@ -137,7 +134,7 @@ export default {
   .content-title{
     font-size: 16px;font-weight: bold;color: #000;
   }
-  .content-list{}
+  // .content-list{}
   .content-porj-item{width: 100%;margin-top: 20px;}
   .content-porj-item-cover{border-radius: 4px;overflow: hidden;}
   .content-porj-item-text-title{font-size: 24px;margin-top: 30px;width: 100%;color: #000;}
