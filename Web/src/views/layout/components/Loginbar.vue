@@ -1,25 +1,25 @@
 <template>
   <div class="HeaderLoginbar">
     <div class="userbar" v-if="AuthUser">
-        <el-dropdown>
-          <span class="el-dropdown-link">
-            欢迎你: {{UserData.UserName}}<i class="el-icon-arrow-down el-icon--right"></i>
-          </span>
-          <el-dropdown-menu slot="dropdown">
-              <el-dropdown-item @click.native="Logout_user">退出登录</el-dropdown-item>
-          </el-dropdown-menu>
-        </el-dropdown>
-        <!-- <div class="username">
+      <el-dropdown>
+        <span class="el-dropdown-link">
+          欢迎你: {{UserData.UserName}}
+          <i class="el-icon-arrow-down el-icon--right"></i>
+        </span>
+        <el-dropdown-menu slot="dropdown">
+          <el-dropdown-item @click.native="Logout_users">退出登录</el-dropdown-item>
+        </el-dropdown-menu>
+      </el-dropdown>
+      <!-- <div class="username">
             <span>欢迎你: {{UserData.UserName}}</span>
-        </div> -->
+      </div>-->
     </div>
 
     <div class="login" v-else>
-        <a :href="loginurl">
+      <a :href="loginurl">
         <div class="visitor_login">游客登录</div>
-        </a>
+      </a>
     </div>
-
   </div>
 </template>
 <script>
@@ -27,43 +27,39 @@ export default {
   name: "HeaderLoginbar",
   data() {
     return {
-      AuthUser:'',
-      loginurl:'',
-      UserData:''
-    }
+      AuthUser: "",
+      loginurl: "",
+      UserData: ""
+    };
   },
   created() {
-    this.Redata()
-  },
-  mounted(){
-    // console.log(123)
+    this.AuthUser = this.LoginStatus();
+    this.loginurl = this.Common.LoginUrl;
+    this.UserData = this.UserInfo();
   },
   methods: {
-    Logout_user(){
-      // console.log('执行')
-      this.Auth.Logout_user()
-      this.LogoutUserInfo()
-      console.log(this.LoginStatus())
-      // this.$router.push('/')
-      if (this.LoginStatus() == null){
-        // console.log('退出登录')
-        this.$router.go(0)
-      }
-    },
-    Redata(){
-      // console.log('头部重新获取')
-      this.AuthUser = this.Auth.AuthUser()
-      //  console.log('头部重新获取1')
-      this.loginurl = this.Common.LoginUrl
-      //  console.log('头部重新获取2')
-      this.UserData = this.UserInfo()
+    Logout_users() {
+      const AuthUserData = this.AuthUserData();
+      this.$http
+        .Logout(AuthUserData.userid, AuthUserData.token)
+        .then(response => {
+          if (response.code === 200) {
+            console.log('>用户退出登录')
+            this.Logout_user();
+            this.LogoutUserInfo();
+            this.$router.go(0)
+          }
+        })
+        .catch(error => {
+          console.log("error", error);
+        });
     }
   }
 };
 </script>
 <style lang="scss" scoped>
 .HeaderLoginbar {
-    margin-left: 25px;
+  margin-left: 25px;
   float: right;
   height: 25px;
   line-height: 25px;

@@ -17,7 +17,7 @@ import firstscreen from './FirstScreen.vue'
 import gutterlicard from '../../components/GutterLiCard.vue'
 import myintroduce from './MyIntroduce.vue'
 import dynamics from './Dynamics.vue'
-
+import {Message} from 'element-ui'
 export default {
   name: 'Home',
   components: {
@@ -31,6 +31,13 @@ export default {
       if (this.$route.params.topage == 'login'){
         this.$forceUpdate()
         this.$router.go(0)
+      }
+      if (this.$route.params.msg){
+        Message({
+          message: this.$route.params.msg,
+          type: 'error',
+          duration: 5 * 1000
+        })
       }
     }
   }

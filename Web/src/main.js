@@ -21,11 +21,14 @@ import * as api from './api'
 
 Vue.prototype.$http = api
 Vue.prototype.Common = Common
-Vue.prototype.Auth = Auth
+
+Vue.prototype.AuthUserData = Auth.AuthUserData
+Vue.prototype.Login_user = Auth.Login_user
+Vue.prototype.Logout_user = Auth.Logout_user
+Vue.prototype.LoginStatus = Auth.AuthUser
 Vue.prototype.UserInfo = StoreUser.QueryUserInfo
 Vue.prototype.LoginUserInfo = StoreUser.StoreUserInfo
 Vue.prototype.LogoutUserInfo = StoreUser.RemoveUserInfo
-Vue.prototype.LoginStatus = Auth.AuthUser
 
 // Vue.use(ElementUI);
 Vue.use(ElementUI, { locale })

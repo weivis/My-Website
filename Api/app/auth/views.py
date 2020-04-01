@@ -7,6 +7,7 @@ from app.Kit import DateTimeForStr
 from flask_bcrypt import generate_password_hash, check_password_hash
 import hashlib
 from app.Models import User
+from app.Config import SERVER_GULAOBURL
 
 def register(request):
 
@@ -67,7 +68,7 @@ def login(request):
         user.token = str(md5)
         db.session.commit()
         # return 400, '登录成功', {'Token':md5, 'userID': str(user.id)}
-        return ReturnCode.ok, '登录成功', {'Token':md5, 'userID': str(user.id)}
+        return ReturnCode.ok, '登录成功', {'Token':md5, 'userID': str(user.id), 'username':user.username, 'head':SERVER_GULAOBURL + '/static/head/' + user.head}
         
 
     return ReturnCode.paramete_error, ' 邮箱或密码不正确', ''

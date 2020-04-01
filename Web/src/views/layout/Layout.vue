@@ -20,7 +20,6 @@ import appmain from './AppMain'
             'layout-appmain':appmain
         },
         created() { //生命周期函数
-
         }
     }
 </script>
