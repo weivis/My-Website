@@ -6,6 +6,7 @@ import 'element-ui/lib/theme-chalk/index.css';
 import '@/styles/common.scss' // global css
 import VueParticles from 'vue-particles'
 import '@/permission' // permission control
+import locale from 'element-ui/lib/locale/lang/zh-CN' // lang i18n
 
 import App from './App.vue'
 import router from './router'
@@ -16,7 +17,9 @@ Vue.config.productionTip = false
 import * as StoreUser from './store/user'
 import Common from './Common'
 import Auth from './Auth'
+import * as api from './api'
 
+Vue.prototype.$http = api
 Vue.prototype.Common = Common
 Vue.prototype.Auth = Auth
 Vue.prototype.UserInfo = StoreUser.QueryUserInfo
@@ -24,7 +27,8 @@ Vue.prototype.LoginUserInfo = StoreUser.StoreUserInfo
 Vue.prototype.LogoutUserInfo = StoreUser.RemoveUserInfo
 Vue.prototype.LoginStatus = Auth.AuthUser
 
-Vue.use(ElementUI);
+// Vue.use(ElementUI);
+Vue.use(ElementUI, { locale })
 Vue.use(VueParticles)
 
 new Vue({

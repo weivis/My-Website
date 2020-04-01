@@ -9,27 +9,14 @@ SECRET_KEY = '\x12my\x0bVO\xeb\xf8\x18\x15\xc5_?\x91\xd7h\x06AC'
 # ----------------------------------------------------------------------
 
 # 测试服数据库
-SQLALCHEMY_DATABASE_URI = "mysql://root:@localhost:3306/my-website?charset=utf8mb4"
+# SQLALCHEMY_DATABASE_URI = "mysql://root:@localhost:3306/my-website?charset=utf8mb4"
+SQLALCHEMY_DATABASE_URI = "mysql://root:kaluliroot123@119.23.243.25:3306/xianjunwei?charset=utf8mb4"
 
 # 其他
 SQLALCHEMY_TRACK_MODIFICATIONS = False
 '''
     如果设置成 True (默认情况)，Flask-SQLAlchemy 将会追踪对象的修改并且发送信号。这需要额外的内存， 如果不必要的可以禁用它。
 '''
-
-# ----------------------------------------------------------------------
-
-# Token失效时候返回
-ERROR_TOKENAUTHCODE = 10000
-
-# 没登陆的时候返回错误码
-NOT_LOGIN_ERROR_CODES = 10086
-
-# 黑名单用户返回值
-USER_ERROR_GROUP_CODES = 0000
-
-# 错误请求时返回
-REQUEST_ERROR_METHOD_CODES = 1000
 
 # ----------------------------------------------------------------------
 

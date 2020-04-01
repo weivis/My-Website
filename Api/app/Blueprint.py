@@ -1,8 +1,13 @@
-from app.page1 import page1
+from app.auth import auth
+from app.opus import opus
+from app.article import article
+from app.photo import photo
 
 DEFAULT_BLUEPRINT = (
-    (page1, '/'),
-    (page1, '/page1')
+    (auth, '/auth'),
+    (opus, '/opus'),
+    (article, '/article'),
+    (photo, '/photo')
 )
 
 # 封装配置蓝本的函数

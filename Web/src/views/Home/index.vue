@@ -29,6 +29,7 @@ export default {
   created(){
     if (this.$route.params){
       if (this.$route.params.topage == 'login'){
+        this.$forceUpdate()
         this.$router.go(0)
       }
     }

@@ -43,6 +43,11 @@
 
 export default {
   name: 'login',
+  created(){
+    if(this.LoginStatus()){
+      this.$router.push({name: "Home", params: {topage:'login'}})
+    }
+  },
   data(){
     return{
       email:'',
@@ -54,12 +59,30 @@ export default {
     loginstart(){
       console.log(this.email)
       console.log(this.password)
-      this.Auth.Login_user('weivi')
-      this.LoginUserInfo('WeiVi',1,'1.png')
-      if (this.LoginStatus()){
-        // this.$router.push({ name: "Home" });
-        this.$router.push({name: "Home", params: {topage:'login'}})
-      }
+      // this.Auth.Login_user('weivi')
+      // this.LoginUserInfo('WeiVi',1,'1.png')
+      // if (this.LoginStatus()){
+      //   this.$forceUpdate()
+      //   // this.$router.push({ name: "Home" });
+      //   // this.$router.go(0)
+      //   this.$router.push({name: "Home", params: {topage:'login'}})
+      // }
+
+      this.$http.login(this.email, this.password).then(response => {
+          console.log('cookie',response)
+          // const data = JSON.parse(JSON.stringify(response.d))
+          // console.log(data)
+          // if (response.c === 0) {
+            // setToken(data.session_id)
+            // console.log(data.session_id)
+            // localStorage.setItem('token', data.session_id) // 本地缓存token
+            // localStorage.setItem('username', username) // 本地缓存用户名
+            // commit('SET_TOKEN', data.session_id)
+          // }
+        }).catch(error => {
+          console.log('error', error);
+        })
+
     }
   },
   components: {
@@ -67,7 +90,7 @@ export default {
 }
 </script>
 <style type="css">
-  .el-divider__text{background-color: #f0f0f0;color: #9e9e9e;}
+  .el-divider__text{background-color: #fbfbfb;color: #9e9e9e;}
 </style>
 <style>
   .app-main{
@@ -114,9 +137,9 @@ export default {
       z-index: 999;
       float: right;
       margin-top: 200px;
-      // background-color:rgba(0, 0, 0, 0.06);
-      background-color: #f0f0f0;
+      background-color: #fbfbfb;
       margin-right: 10%;
+      border: 1px solid #f4f4f4;
       padding: 20px;
     }
     .login-title{

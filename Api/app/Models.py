@@ -40,12 +40,20 @@ from app.Extensions import db
 # 用户----------------------------------------------------------------------------------------
 
 # 用户账户表
-class UserAccount(db.Model):
+class User(db.Model):
     
-    __tablename__ = 'user_account'
+    __tablename__ = 'user'
     id = db.Column(db.Integer, primary_key=True)
-    # reg_time = db.Column(db.DateTime) # 注册时间
-    # token = db.Column(db.Text) # 登录token 需要开启Token认证登录的时候才需要解开注释
-
-    account = db.Column(db.String(255))
-    passport = db.Column(db.Text)
+    reg_time = db.Column(db.DateTime) # 注册时间
+    token = db.Column(db.Text) # 登录token 需要开启Token认证登录的时候才需要解开注释
+    username = db.Column(db.String(255))
+    email = db.Column(db.String(255))
+    password = db.Column(db.Text)
+    head = db.Column(db.Text)
+    userstatus = db.Column(db.Integer)
+    '''
+        userstatus
+        0 = 普通用户
+        1 = 管理员
+        2 = 黑名单用户
+    '''

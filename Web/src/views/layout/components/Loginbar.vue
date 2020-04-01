@@ -32,24 +32,32 @@ export default {
       UserData:''
     }
   },
+  created() {
+    this.Redata()
+  },
+  mounted(){
+    // console.log(123)
+  },
   methods: {
     Logout_user(){
-      console.log('执行')
+      // console.log('执行')
       this.Auth.Logout_user()
       this.LogoutUserInfo()
       console.log(this.LoginStatus())
       // this.$router.push('/')
       if (this.LoginStatus() == null){
-        console.log('退出登录')
+        // console.log('退出登录')
         this.$router.go(0)
       }
+    },
+    Redata(){
+      // console.log('头部重新获取')
+      this.AuthUser = this.Auth.AuthUser()
+      //  console.log('头部重新获取1')
+      this.loginurl = this.Common.LoginUrl
+      //  console.log('头部重新获取2')
+      this.UserData = this.UserInfo()
     }
-    
-  },
-  created:function(){
-    this.AuthUser = this.Auth.AuthUser()
-    this.loginurl = this.Common.LoginUrl
-    this.UserData = this.UserInfo()
   }
 };
 </script>
