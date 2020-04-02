@@ -1,7 +1,7 @@
 <template>
 
   <div class="main">
-    2
+    1
   </div>
 
 </template>
@@ -9,7 +9,7 @@
 <script>
 
 export default {
-  name: 'design',
+  name: 'photo',
   components: {
   }
 }

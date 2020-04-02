@@ -3,6 +3,7 @@ import Vue from 'vue'
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 
+import { Message } from 'element-ui'
 import '@/styles/common.scss' // global css
 import VueParticles from 'vue-particles'
 import '@/permission' // permission control
@@ -21,7 +22,8 @@ import * as api from './api'
 
 Vue.prototype.$http = api
 Vue.prototype.Common = Common
-
+Vue.prototype.Message = Message
+Vue.prototype.isAdmin = Auth.isAdmin
 Vue.prototype.AuthUserData = Auth.AuthUserData
 Vue.prototype.Login_user = Auth.Login_user
 Vue.prototype.Logout_user = Auth.Logout_user

@@ -9,7 +9,7 @@
 <script>
 
 export default {
-  name: 'Works',
+  name: 'Proj',
   components: {
   }
 }

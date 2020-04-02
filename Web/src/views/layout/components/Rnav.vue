@@ -2,7 +2,7 @@
     <div class="R-Nav">
         <ul>
             <li v-for="(item,index) in nav" :key="index">
-                <a :href="item.link">{{ item.title }}</a>
+                <a :href="item.link" target="_blank">{{ item.title }}</a>
             </li>
         </ul>
     </div>

@@ -9,8 +9,8 @@ SECRET_KEY = '\x12my\x0bVO\xeb\xf8\x18\x15\xc5_?\x91\xd7h\x06AC'
 # ----------------------------------------------------------------------
 
 # 测试服数据库
-SQLALCHEMY_DATABASE_URI = "mysql://root:@localhost:3306/my-website?charset=utf8mb4"
-# SQLALCHEMY_DATABASE_URI = "mysql://root:kaluliroot123@119.23.243.25:3306/xianjunwei?charset=utf8mb4"
+# SQLALCHEMY_DATABASE_URI = "mysql://root:@localhost:3306/my-website?charset=utf8mb4"
+SQLALCHEMY_DATABASE_URI = "mysql://root:kaluliroot123@119.23.243.25:3306/xianjunwei?charset=utf8mb4"
 
 # 其他
 SQLALCHEMY_TRACK_MODIFICATIONS = False

@@ -39,7 +39,9 @@
         </div>
         <el-divider content-position="center" style="ackground-color: #f0f0f0;">or</el-divider>
         <div style="text-align:center;margin-top: 20px;">
-          <el-button round align="center">注册</el-button>
+          <a :href="RegisterUrl">
+            <el-button round align="center">注册</el-button>
+          </a>
         </div>
       </div>
       <div class="image">
@@ -52,6 +54,7 @@
 export default {
   name: "login",
   created() {
+    this.RegisterUrl = this.Common.RegisterUrl;
     if (this.LoginStatus()) {
       // 如果用户已经登录就跳转回首页
       this.$router.push({ name: "Home", params: { topage: "login" } });
@@ -61,26 +64,58 @@ export default {
     return {
       email: "",
       password: "",
-      image: this.Common.httpUrl + "/static/login.png"
+      image: this.Common.httpUrl + "/static/login.png",
+      RegisterUrl: ""
     };
   },
   methods: {
+    seedauth(){
+      var regEmail = /^[A-Za-z0-9\u4e00-\u9fa5]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/
+        if (this.email != '' && !regEmail.test(this.email)) {
+            this.$message({
+                message: '邮箱格式不正确',
+                type: 'error'
+            })
+            return false
+            // this.email = ''
+        } else {
+          if (this.password == ''){
+            this.$message({
+                message: '密码不能为空',
+                type: 'error'
+            })
+            return false
+          } else {
+            return true
+          }
+        }
+    },
     loginstart() {
-      // console.log(this.email)
-      // console.log(this.password)
+      if (this.seedauth() == false){
+        return console.log('终止')
+      }
+      this.$message({
+          message: '正在登录中',
+          type: 'success'
+      })
+      console.log(this.email)
+      console.log(this.password)
       this.$http
         .login(this.email, this.password)
         .then(response => {
-          this.Login_user(
-            response.data.Token,
-            response.data.userID
-          );
-          this.LoginUserInfo(
-            response.data.username,
-            response.data.userID,
-            response.data.head
-          );
-          this.$router.push({ name: "Home", params: { topage: "login" } });
+          if (response.code == 200){
+            this.Login_user(
+              response.data.Token,
+              response.data.userID,
+              response.data.userstatus
+            );
+            this.LoginUserInfo(
+              response.data.username,
+              response.data.userID,
+              response.data.head
+            );
+            this.$router.push({ name: "Home", params: { topage: "login" } });
+          }
         })
         .catch(error => {
           console.log("error", error);

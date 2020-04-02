@@ -7,12 +7,15 @@
           <i class="el-icon-arrow-down el-icon--right"></i>
         </span>
         <el-dropdown-menu slot="dropdown">
+
+          <div v-if="this.isAdmin()">
+            <el-dropdown-item @click.native="Logout_users">管理后台</el-dropdown-item>
+          </div>
+
           <el-dropdown-item @click.native="Logout_users">退出登录</el-dropdown-item>
+
         </el-dropdown-menu>
       </el-dropdown>
-      <!-- <div class="username">
-            <span>欢迎你: {{UserData.UserName}}</span>
-      </div>-->
     </div>
 
     <div class="login" v-else>
@@ -34,8 +37,10 @@ export default {
   },
   created() {
     this.AuthUser = this.LoginStatus();
+    if(this.AuthUser){
+      this.UserData = this.UserInfo();
+    }
     this.loginurl = this.Common.LoginUrl;
-    this.UserData = this.UserInfo();
   },
   methods: {
     Logout_users() {

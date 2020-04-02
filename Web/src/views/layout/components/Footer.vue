@@ -101,7 +101,7 @@
 
 <style lang="scss" scoped>
 .layout-footer {
-    background-color: #fbfbfb;
+    background-color: #fafafa;
     border-top: 1px solid #f4f4f4;
     height: 350px;
     .footer-mainbav{

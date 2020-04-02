@@ -8,6 +8,7 @@ import Layout from '../views/layout/Layout'
 
 const routes = [
   {
+    // 根
     path: '/',
     component: Layout,
     children: [
@@ -20,29 +21,31 @@ const routes = [
     ]
   },
   {
-    path: '/works',
+    // 作品
+    path: '/opus',
     component: Layout,
     children: [
       {
-        path: '/works',
-        name: 'works',
-        component: () => import('@/views/Works/index'),
-        meta: { pagename: 'Works', title:'作品' }
+        path: '/opus',
+        name: 'opus',
+        component: () => import('@/views/Opus/index'),
+        meta: { pagename: 'Opus', title:'作品' }
       },
       {
         path: 'design',
         name: 'design',
-        component: () => import('@/views/Works/WorksDesign/index'),
+        component: () => import('@/views/Opus/Design/index'),
         meta: { pagename: 'Design', title:'设计作品' }
       }
     ]
   },
   {
-    path: '/login',
+    // 认证
+    path: '/auth',
     component: Layout,
     children: [
       {
-        path: '/',
+        path: 'sign-in',
         name: 'login',
         component: () => import('@/views/Auth/Login/index'),
         meta: { pagename: 'Sign-in', title:'登录'}
@@ -50,8 +53,47 @@ const routes = [
       {
         path: 'register',
         name: 'register',
-        component: () => import('@/views/Works/WorksDesign/index'),
+        component: () => import('@/views/Auth/Register/index'),
         meta: { pagename: 'Register', title:'注册' }
+      }
+    ]
+  },
+  {
+    // 文章
+    path: '/article',
+    component: Layout,
+    children: [
+      {
+        path: '/',
+        name: 'article',
+        component: () => import('@/views/Article'),
+        meta: { pagename: 'Article', title:'文章'}
+      }
+    ]
+  },
+  {
+    // 项目
+    path: '/proj',
+    component: Layout,
+    children: [
+      {
+        path: '/',
+        name: 'proj',
+        component: () => import('@/views/Proj'),
+        meta: { pagename: 'Projects', title:'项目'}
+      }
+    ]
+  },
+  {
+    // 摄影
+    path: '/photo',
+    component: Layout,
+    children: [
+      {
+        path: '/',
+        name: 'photo',
+        component: () => import('@/views/Photo'),
+        meta: { pagename: 'Photo', title:'摄影'}
       }
     ]
   },
