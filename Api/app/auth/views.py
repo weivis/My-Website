@@ -74,7 +74,7 @@ def login(request):
     return ReturnCode.paramete_error, ' 邮箱或密码不正确', ''
 
 def Logout(request):
-    userid = GetRequestJsonData(request, 'userID', None)
+    userid = GetRequestJsonData(request, 'userid', None)
     user = User.query.filter(User.id == userid).first()
     if not user:
         return ReturnCode.paramete_error, '用户不存在', ''

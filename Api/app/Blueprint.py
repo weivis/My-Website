@@ -3,19 +3,15 @@ from app.auth import auth
 
 # 内容模块
 from app.home import home
-from app.opus import opus
 from app.article import article
 from app.photo import photo
-from app.proj import proj
 
 DEFAULT_BLUEPRINT = (
     (auth, '/auth'),
     
     (home, '/home'),
-    (opus, '/opus'),
     (article, '/article'),
-    (photo, '/photo'),
-    (proj, '/proj')
+    (photo, '/photo')
 )
 
 # 封装配置蓝本的函数

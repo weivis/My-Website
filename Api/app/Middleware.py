@@ -32,6 +32,7 @@ def requestGET(func=None):
     @wraps(func)
     def wrapper(*args, **kwargs):
         if request.method == 'GET':
+            # print('get')
             return func(request, *args, **kwargs)
         else:
             return ReturnRequest(SystemCode.ErrorRequestMethod,'请求方法不对','')
@@ -48,7 +49,7 @@ def UserTokenAuthPost(func=None):
     @wraps(func)
     def wrapper(*args, **kwargs):
         if request.method == 'POST':
-            userkey = GetRequestJsonData(request, 'userID', None)
+            userkey = GetRequestJsonData(request, 'userid', None)
             token = GetRequestJsonData(request, 'token', None)
             if not userkey or not token:
                 return ReturnRequest(SystemCode.NotLogin, '请求参数有误', '')
@@ -64,7 +65,7 @@ def UserTokenAuthPost(func=None):
             if obj.token != token:
                 return ReturnRequest(SystemCode.TokenInvalid, 'Token已失效或不正确, 请重新登录', '')
             
-            userid = obj.id
+            # userid = obj.id
             return func(request, *args, **kwargs)
 
         else:
@@ -78,7 +79,7 @@ def UserTokenAuthGet(func=None):
     @wraps(func)
     def wrapper(*args, **kwargs):
         if request.method == 'GET':
-            userkey = GetRequestJsonData(request, 'userID', None)
+            userkey = GetRequestJsonData(request, 'userid', None)
             token = GetRequestJsonData(request, 'token', None)
             if not userkey or not token:
                 return ReturnRequest(SystemCode.NotLogin, '请求参数有误', '')
@@ -94,7 +95,7 @@ def UserTokenAuthGet(func=None):
             if obj.token != token:
                 return ReturnRequest(SystemCode.TokenInvalid, 'Token已失效或不正确, 请重新登录', '')
 
-            userid = obj.id
+            # userid = obj.id
             return func(request, *args, **kwargs)
 
         else:

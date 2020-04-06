@@ -7,11 +7,11 @@
         <div class="List">
           <div class="title">设计作品</div>
           <div class="content" >
-            <el-row :gutter="25">
+            <el-row :gutter="30">
 
               <el-col :span="6" v-for="(item, index) in desgin" :key="index">
                 <div class="for-item">
-                  <el-link :href="item.url" target="_blank" :underline="false">
+                  <el-link :href="item.link" target="_blank" :underline="false">
                     <div class="item-cover">
                       <el-image class="list-imgitem-img" :src="item.img" fit='scale-down'/>
                     </div>
@@ -52,9 +52,9 @@ export default {
 </script>
 <style lang="scss" scoped>
 
-  .App-content{
-    // margin-top: 30px;
-  }
+  // .App-content{
+  //   // margin-top: 30px;
+  // }
 
   .List{
     width: 100%;

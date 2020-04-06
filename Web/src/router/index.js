@@ -21,25 +21,6 @@ const routes = [
     ]
   },
   {
-    // 作品
-    path: '/opus',
-    component: Layout,
-    children: [
-      {
-        path: '/opus',
-        name: 'opus',
-        component: () => import('@/views/Opus/index'),
-        meta: { pagename: 'Opus', title:'作品' }
-      },
-      {
-        path: 'design',
-        name: 'design',
-        component: () => import('@/views/Opus/Design/index'),
-        meta: { pagename: 'Design', title:'设计作品' }
-      }
-    ]
-  },
-  {
     // 认证
     path: '/auth',
     component: Layout,
@@ -59,6 +40,38 @@ const routes = [
     ]
   },
   {
+    // 上传
+    path: '/upload',
+    component: Layout,
+    children: [
+      {
+        path: '/',
+        name: 'upload',
+        component: () => import('@/views/Article/upload'),
+        meta: { pagename: 'UploadArticle', title:'上传文章'}
+      }
+    ]
+  },
+  {
+    // 作品
+    path: '/opus',
+    component: Layout,
+    children: [
+      {
+        path: '/opus',
+        name: 'opus',
+        component: () => import('@/views/Article/opus'),
+        meta: { pagename: 'Opus', title:'作品' }
+      },
+      {
+        path: 'design',
+        name: 'opusitem',
+        component: () => import('@/views/Article/item/opusitem'),
+        meta: { pagename: 'Design', title:'设计作品' }
+      }
+    ]
+  },
+  {
     // 文章
     path: '/article',
     component: Layout,
@@ -66,7 +79,7 @@ const routes = [
       {
         path: '/',
         name: 'article',
-        component: () => import('@/views/Article'),
+        component: () => import('@/views/Article/article'),
         meta: { pagename: 'Article', title:'文章'}
       }
     ]
@@ -79,7 +92,7 @@ const routes = [
       {
         path: '/',
         name: 'proj',
-        component: () => import('@/views/Proj'),
+        component: () => import('@/views/Article/proj'),
         meta: { pagename: 'Projects', title:'项目'}
       }
     ]
