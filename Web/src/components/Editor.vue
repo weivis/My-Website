@@ -10,21 +10,21 @@
     props: ['content','disabled'],
     data() {
       return {
-        strHtml: this.content,
+        strHtml: '',
       }
     },
     components: {
       'vue2-editor': VueEditor
     },
     watch: {
-      strHtml(newval) {
+      strHtml (newval) {
         //实时监控编辑器内容变化，使父组件能够实时获取输入内容
-        this.$emit('change', newval);
+        this.$emit('input', newval);
       },
-      content(newval) {
-        //父组件实时更新数据流向子组件
-        this.strHtml = newval
-      }
+      // content(newval) {
+      //   //父组件实时更新数据流向子组件
+      //   this.strHtml = newval
+      // }
     },
     methods:{
       handleImageAdded(file, Editor, cursorLocation, resetUploader) {
