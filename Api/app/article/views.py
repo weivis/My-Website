@@ -38,8 +38,8 @@ def query_article_list(request):
     if int(article_type) == 3:
         querys = querys.filter(Article.article_type == article_type)
 
-    query_count, query_dataitems, query_datapages = SerializeQuerySet(querys, query_pages)
-    return ReturnCode.paramete_error, '', {
+    query_count, query_dataitems, query_datapages = SerializeQuerySet(querys, query_pages, per_page=100)
+    return ReturnCode.ok, '', {
         'list':Serialize(query_dataitems,obj='list'),
         'queryCount': query_count,
         'dataPges': query_datapages,

@@ -11,7 +11,7 @@
 
               <el-col :span="6" v-for="(item, index) in desgin" :key="index">
                 <div class="for-item">
-                  <el-link :href="item.link" target="_blank" :underline="false">
+                  <el-link :href="'/opus/design?id=' + item.id" target="_blank" :underline="false">
                     <div class="item-cover">
                       <el-image class="list-imgitem-img" :src="item.img" fit='scale-down'/>
                     </div>
@@ -40,13 +40,19 @@ export default {
   data(){
     return{
       desgin:[
-        {img:'http://127.0.0.1:8080/static/project/cover.png', title:'尼噗云', introduce:'基于模板的视频生成平台', link:''},
-        {img:'http://127.0.0.1:8080/static/project/cover.png', title:'尼噗云', introduce:'基于模板的视频生成平台', link:''},
-        {img:'http://127.0.0.1:8080/static/project/cover.png', title:'尼噗云', introduce:'基于模板的视频生成平台', link:''},
-        {img:'http://127.0.0.1:8080/static/project/cover.png', title:'尼噗云', introduce:'基于模板的视频生成平台', link:''},
-        {img:'http://127.0.0.1:8080/static/project/cover.png', title:'尼噗云', introduce:'基于模板的视频生成平台', link:''}
       ]
     }
+  },
+  created(){
+    this.$http.article_opuslist(1)
+    .then(response => {
+      if (response.code == 200){
+        this.desgin = response.data.list
+      }
+    })
+    .catch(error => {
+      console.log("error", error);
+    });
   }
 }
 </script>

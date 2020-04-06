@@ -1,7 +1,7 @@
 <template>
 
   <div class="main">
-      <editor v-model="content"/>
+      <editor v-model="content" :content='this.oldcontent'/>
       <button @click="print">print</button>
   </div>
 
@@ -13,6 +13,7 @@ export default {
   name: 'uploadarticle',
   data(){
       return{
+        oldcontent: 'asdasdsa',
         content : '1023132132'
       }
   },

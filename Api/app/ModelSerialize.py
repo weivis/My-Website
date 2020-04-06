@@ -26,7 +26,7 @@ class SerializeConfig:
     # 每页分多少条
     SQLALCHEMY_PAGINATE_PER = 10
 
-def SerializeQuerySet(querys, query_page):
+def SerializeQuerySet(querys, query_page, per_page=SerializeConfig.SQLALCHEMY_PAGINATE_PER):
     '''
         预处理
         querys : 查询集
@@ -38,7 +38,7 @@ def SerializeQuerySet(querys, query_page):
             query_count query_dataitems query_datapages
     '''
     query_count = querys.count()
-    query_data = querys.paginate(query_page, per_page=SerializeConfig.SQLALCHEMY_PAGINATE_PER)
+    query_data = querys.paginate(query_page, per_page=per_page)
     return query_count, query_data.items, query_data.pages
 
 def Serialize(models, obj='obj', userid=None, dataprocessing=None, notreturn = []):
