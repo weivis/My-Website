@@ -1,7 +1,7 @@
 <template>
 
   <div class="main">
-      <editor v-model="content" :content='this.oldcontent'/>
+      <editor v-model="content" :content='content'/>
       <button @click="print">print</button>
       <button @click="pass2child">父级传递给子级</button>
   </div>
@@ -14,8 +14,7 @@ export default {
   name: 'uploadarticle',
   data(){
       return{
-        oldcontent: 'asdasdsa',
-        content : '1023132132',
+        content : '',
       }
   },
   methods:{

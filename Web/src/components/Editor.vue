@@ -1,10 +1,11 @@
 <template>
-    <vue2-editor v-model="strHtml" @imageAdded="handleImageAdded" :disabled='!!disabled'></vue2-editor>
+    <vue2-editor v-model="strHtml" :disabled='!!disabled'></vue2-editor>
+    <!-- @imageAdded="handleImageAdded" -->
 </template>
 <script>
   import { VueEditor } from 'vue2-editor'
-  import axios from "axios";
-  import Common from "../Common"
+  // import axios from "axios";
+  // import Common from "../Common"
   export default {
     name: 'Editor',
     props: ['content','disabled'],
@@ -30,24 +31,24 @@
       // }
     },
     methods:{
-      handleImageAdded(file, Editor, cursorLocation, resetUploader) {
-      var formData = new FormData();
-      formData.append("image", file);
+      // handleImageAdded(file, Editor, cursorLocation, resetUploader) {
+      // var formData = new FormData();
+      // formData.append("image", file);
 
-      axios({
-        url: Common.httpUrl + "/upload/file",
-        method: "POST",
-        data: [formData]
-      })
-        .then(result => {
-          let url = result.data.url; // Get url from response
-          Editor.insertEmbed(cursorLocation, "image", url);
-          resetUploader();
-        })
-        .catch(err => {
-          console.log(err);
-        });
-      }
+      // axios({
+      //   url: Common.httpUrl + "/upload/file",
+      //   method: "POST",
+      //   data: [formData]
+      // })
+      //   .then(result => {
+      //     let url = result.data.url; // Get url from response
+      //     Editor.insertEmbed(cursorLocation, "image", url);
+      //     resetUploader();
+      //   })
+      //   .catch(err => {
+      //     console.log(err);
+      //   });
+      // }
     },
   }
 </script>
