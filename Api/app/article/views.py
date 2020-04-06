@@ -1,9 +1,9 @@
 from app.Extensions import db
-from app.Kit import GetRequestJsonData, GetRequestFormData, GetRequestArgsData
+from app.Kit import GetRequestJsonData, GetRequestFormData, GetRequestArgsData, PaginatePages, PaginatePagesArgs
 from app.ReturnCode import ReturnCode
 from datetime import datetime
 from app.Models import Article
-from app.ModelSerialize import Serialize
+from app.ModelSerialize import Serialize, SerializeQuerySet
 
 def query_article(request):
     id = GetRequestArgsData(request, 'id', None)
@@ -13,12 +13,46 @@ def query_article(request):
     serialize = Serialize(article, obj='obj')
     return ReturnCode.ok, '', serialize
 
+def query_article_list(request):
+    article_type = GetRequestArgsData(request, 'article_type', None)
+    query_pages = PaginatePagesArgs(request,None)
+
+    if not article_type:
+        return ReturnCode.paramete_error, '获取的文章类型缺乏', ''
+
+    querys = Article.query.filter(Article.status == 0).order_by(Article.upload_time.desc())
+
+    # 作品
+    if int(article_type) == 1:
+        querys = querys.filter(Article.article_type == article_type)
+
+        content_type = GetRequestArgsData(request, 'content_type', None)
+        if content_type:
+            querys = querys.filter(Article.content_type == content_type)
+
+    # 文章
+    if int(article_type) == 2:
+        querys = querys.filter(Article.article_type == article_type)
+
+    # 项目
+    if int(article_type) == 3:
+        querys = querys.filter(Article.article_type == article_type)
+
+    query_count, query_dataitems, query_datapages = SerializeQuerySet(querys, query_pages)
+    return ReturnCode.paramete_error, '', {
+        'list':Serialize(query_dataitems,obj='list'),
+        'queryCount': query_count,
+        'dataPges': query_datapages,
+        'nowPage': query_pages
+        }
+
 def upload_article(request):
     userid = GetRequestJsonData(request, 'userid', None)
     title = GetRequestJsonData(request, 'title', None)
     introduce = GetRequestJsonData(request, 'introduce', None)
     content = GetRequestJsonData(request, 'content', None)
     article_type = GetRequestJsonData(request, 'article_type', None)
+    content_type = GetRequestJsonData(request, 'content_type', None)
     status = GetRequestJsonData(request, 'status', 0)
 
     if not userid:
@@ -43,6 +77,7 @@ def upload_article(request):
     new.title = str(title)
     new.introduce = str(introduce)
     new.content = str(content)
+    new.content_type = int(content_type)
     new.status = status
 
     db.session.add(new)

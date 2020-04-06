@@ -130,3 +130,18 @@ def PaginatePages(request, key):
         pages = 1
 
     return pages
+
+def PaginatePagesArgs(request, key):
+    '''
+        Json
+        获取分页数
+        key = 自定义参数名 or 默认 : queryPage
+    '''
+    if key == None:
+        key = 'queryPage'
+    pages = request.args.get(str(key), 1)
+
+    if pages == 0 or str(pages) == '':
+        pages = 1
+
+    return pages
