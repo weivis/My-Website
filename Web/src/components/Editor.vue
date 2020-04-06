@@ -17,6 +17,9 @@
       'vue2-editor': VueEditor
     },
     watch: {
+      $attrs (val) {
+        this.strHtml = val.value
+      },
       strHtml (newval) {
         //实时监控编辑器内容变化，使父组件能够实时获取输入内容
         this.$emit('input', newval);
