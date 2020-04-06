@@ -3,6 +3,7 @@
   <div class="main">
       <editor v-model="content"/>
       <button @click="print">print</button>
+      <button @click="pass2child">父级传递给子级</button>
   </div>
 
 </template>
@@ -17,6 +18,9 @@ export default {
       }
   },
   methods:{
+      pass2child () {
+        this.content = '父级传递给子级'
+      },
       print(){
           console.log(this.content);  
       }
