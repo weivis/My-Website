@@ -81,6 +81,17 @@ def DateForStr(s):
 
 # 获取请求体内的字符串 --------------------------------------------------------
 
+def GetRequestArgsData(request,key,nones):
+    '''
+        Args
+        获取请求体内的字段对应值
+        GetRequestArgsData(request, '字段', '默认值')
+    '''
+    if nones:
+        return request.args.get(str(key),nones)
+    else:
+        return request.args.get(str(key),None)
+
 def GetRequestJsonData(request,key,nones):
     '''
         Json

@@ -1,5 +1,14 @@
 import request from '@/utils/request'
 
+export function article_query(id) {
+  return request({
+    url: '/article/query?id=' + id,
+    method: 'get',
+    data: {
+    }
+  })
+}
+
 export function login(email, password) {
   return request({
     url: '/auth/login',
@@ -11,12 +20,12 @@ export function login(email, password) {
   })
 }
 
-export function Logout(userID, token) {
+export function Logout(userid, token) {
   return request({
     url: '/auth/Logout',
     method: 'post',
     data: {
-      userID,token
+      userid,token
     }
   })
 }
