@@ -15,16 +15,16 @@ export default {
   data(){
       return{
         oldcontent: 'asdasdsa',
-        content : '1023132132'
+        content : '1023132132',
       }
   },
   methods:{
-      pass2child () {
-        this.content = '父级传递给子级'
-      },
-      print(){
-          console.log(this.content);  
-      }
+    pass2child () {
+      this.content = '父级传递给子级'
+    },
+    print(){
+        console.log(this.content);  
+    },
   },
   components: {
     editor

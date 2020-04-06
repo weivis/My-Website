@@ -22,6 +22,7 @@ import * as api from './api'
 
 Vue.prototype.$http = api
 Vue.prototype.Common = Common
+Vue.prototype.$httpUrl = Common.httpUrl
 Vue.prototype.Message = Message
 Vue.prototype.isAdmin = Auth.isAdmin
 Vue.prototype.AuthUserData = Auth.AuthUserData

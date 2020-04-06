@@ -10,7 +10,7 @@ def query_article(request):
     article = Article.query.filter(Article.id == id).first()
     if not article:
         return ReturnCode.paramete_error, '文章不存在或参数有误', ''
-    serialize = Serialize(article, obj='obj')
+    serialize = Serialize(article, obj='obj', dataprocessing='getarticlelist')
     return ReturnCode.ok, '', serialize
 
 def query_article_list(request):
@@ -40,7 +40,7 @@ def query_article_list(request):
 
     query_count, query_dataitems, query_datapages = SerializeQuerySet(querys, query_pages, per_page=100)
     return ReturnCode.ok, '', {
-        'list':Serialize(query_dataitems,obj='list'),
+        'list':Serialize(query_dataitems,obj='list', dataprocessing='getarticlelist'),
         'queryCount': query_count,
         'dataPges': query_datapages,
         'nowPage': query_pages

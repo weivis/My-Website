@@ -25,15 +25,6 @@ SQLALCHEMY_PAGINATE_PER = 12
 
 # ----------------------------------------------------------------------
 
-# 关于 UPLOAD_KEY和UPLOAD_KEY_FLOAD的用法
-UPLOAD_KEY = ['head']
-UPLOAD_KEY_FLOAD = {'head':'image/head'}
-'''
-    UPLOAD_KEY 是上传时候要使用的key
-    UPLOAD_KEY_FLOAD 是上传的key对于的文件储存跟目录
-'''
-
-# ----------------------------------------------------------------------
-
 # 服务器地址
 SERVER_GULAOBURL = 'http://127.0.0.1:8080'
+SERVER_STATICLOADURL = SERVER_GULAOBURL + '/static'

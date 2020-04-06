@@ -13,7 +13,7 @@
                 <div class="for-item">
                   <el-link :href="'/opus/design?id=' + item.id" target="_blank" :underline="false">
                     <div class="item-cover">
-                      <el-image class="list-imgitem-img" :src="item.img" fit='scale-down'/>
+                      <el-image class="list-imgitem-img" :src="item.cover" fit='scale-down'/>
                     </div>
                     <div class="item-title">
                       <span>{{item.title}}</span>
@@ -44,6 +44,7 @@ export default {
     }
   },
   created(){
+    this.httpUrl = this.Common.httpUrl;
     this.$http.article_opuslist(1)
     .then(response => {
       if (response.code == 200){
@@ -76,9 +77,10 @@ export default {
     .for-item{
       margin-bottom: 40px;
       width:100%;
-      overflow: hidden;
+      // overflow: hidden;
     }
     .item-cover{
+      border: 1px solid #eaecff;
       width: 100%;
     }
     .item-title{font-size: 14px;line-height: 30px;}

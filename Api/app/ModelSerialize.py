@@ -1,6 +1,8 @@
 import datetime
 from sqlalchemy.orm import class_mapper
 
+from app.Config import SERVER_STATICLOADURL
+
 from app.Kit import DateForStr, DateTimeForStr
 # def DateTimeForStr(s):
 #     '''
@@ -121,8 +123,9 @@ def SerializeItem(model,userid=None, dataprocessing = None, notreturn = []):
                     getattr(model, 'id') 获取model id 的值
                 '''
 
-                if dataprocessing == 'getlist':
-                    pass
+                if dataprocessing == 'getarticlelist':
+                    if c == 'cover':
+                        li.append(('cover' , SERVER_STATICLOADURL + getattr(model, 'cover')))
 
         else:
             pass

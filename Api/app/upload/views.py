@@ -3,12 +3,37 @@ import os
 import random
 from datetime import datetime
 
-from app.Common import GetRequestFormData, GetRequestJsonData
-from app.Config import (ERROR_TOKENAUTHCODE, NOT_LOGIN_ERROR_CODES,
-                        REQUEST_ERROR_METHOD_CODES, SERVER_GULAOBURL,
-                        UPLOAD_KEY, UPLOAD_KEY_FLOAD, USER_ERROR_GROUP_CODES)
+# from io import *
+from app.Kit import GetRequestFormData, GetRequestJsonData
+from app.ReturnCode import ReturnCode
 from app.Extensions import db
-from app.Models import UserAccount
+from app.Config import SERVER_GULAOBURL
+
+# 关于 UPLOAD_KEY和UPLOAD_KEY_FLOAD的用法
+UPLOAD_KEY = ['head','articlecover']
+UPLOAD_KEY_FLOAD = {
+    'head':'/head',
+    'articlecover':'/article/cover'
+    }
+'''
+    UPLOAD_KEY 是上传时候要使用的key
+    UPLOAD_KEY_FLOAD 是上传的key对于的文件储存跟目录
+'''
+
+def FileCompress(files):
+    '''图片压缩'''
+    print('压缩')
+    from PIL import Image
+    # value = BytesIO()
+    file=Image.open(files)
+    print(file.size)
+    # filew, fileh=openfile.size
+    size = (530, 1000)
+    file.thumbnail(size)
+    file = file.crop((0, 0, 500, 300))
+    # openfile.save(value, format="JPEG")
+    print(file.size)
+    return file
 
 def CreateNewFilename(ext):
     '''生成新的文件名'''
@@ -25,7 +50,6 @@ def QueryFileName(filestr):
     return os.path.splitext(filename)
 
 def FileExtLegitimate(ext, uploadtype):
-    print(ext)
     if ext:
         if uploadtype == 'image':
             if str(ext) not in ['.jpeg','.jpg','.png', '.jpg']:
@@ -71,9 +95,15 @@ def upload_file(request):
         return 400, '错误: 不允许使用的Key值', {}
 
     newfilename = CreateNewFilename(ext)
-    file.save(os.path.join(os.path.abspath('app/static/' + UPLOAD_KEY_FLOAD[str(upload_key)] + "/"), newfilename))
 
-    return 200, 'ok', {
+    if upload_key in ['articlecover']:
+        files = FileCompress(file)
+    else:
+        files = file
+
+    files.save(os.path.join(os.path.abspath('app/static/' + UPLOAD_KEY_FLOAD[str(upload_key)] + "/"), newfilename))
+
+    return ReturnCode.ok, 'ok', {
         'lodpath': SERVER_GULAOBURL + '/static/' + UPLOAD_KEY_FLOAD[str(upload_key)] + '/' + newfilename,
         'ospath': UPLOAD_KEY_FLOAD[str(upload_key)] + '/' + newfilename
     }
