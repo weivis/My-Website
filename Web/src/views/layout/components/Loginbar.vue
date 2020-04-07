@@ -9,7 +9,11 @@
         <el-dropdown-menu slot="dropdown">
 
           <div v-if="this.isAdmin()">
-            <el-dropdown-item @click.native="Logout_users">管理后台</el-dropdown-item>
+            <a href="/upload"><el-dropdown-item>发布文章</el-dropdown-item></a>
+          </div>
+
+          <div v-if="this.isAdmin()">
+            <a href="/manager"><el-dropdown-item>管理文章</el-dropdown-item></a>
           </div>
 
           <el-dropdown-item @click.native="Logout_users">退出登录</el-dropdown-item>

@@ -19,7 +19,7 @@ service.interceptors.request.use(
       console.log('>request拦截器被执行')
       const AuthUserData = Auth.AuthUserData()
       config.data['token'] = AuthUserData.token
-      config.data['userID'] = AuthUserData.userid
+      config.data['userid'] = AuthUserData.userid
     }
     return config
   },

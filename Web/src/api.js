@@ -1,5 +1,26 @@
 import request from '@/utils/request'
 
+/* 通用api */
+export function upload(data) {
+  return request({
+    url: '/upload/',
+    method: 'post',
+    data: data,
+    headers: {
+      'Content-Type': 'multipart/form-data'
+    }
+  })
+}
+
+// 上传文章
+export function upload_article(data) {
+  return request({
+    url: '/article/upload',
+    method: 'post',
+    data: data
+  })
+}
+
 // 获取全部类型的文章内容
 export function article_query(id) {
   return request({

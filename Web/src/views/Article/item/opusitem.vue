@@ -10,7 +10,7 @@
           <span class="item">发布于: {{data.upload_time}}</span>
         </div>
         <el-divider></el-divider>
-        <div class="content">{{content}}</div>
+        <div class="content" v-html="content"></div>
       </div>
     </div>
   </div>

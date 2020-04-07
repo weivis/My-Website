@@ -40,7 +40,7 @@ const routes = [
     ]
   },
   {
-    // 上传
+    // 上传文章
     path: '/upload',
     component: Layout,
     children: [
@@ -49,6 +49,25 @@ const routes = [
         name: 'upload',
         component: () => import('@/views/Article/upload'),
         meta: { pagename: 'UploadArticle', title:'上传文章'}
+      }
+    ]
+  },
+  {
+    // 管理
+    path: '/manager',
+    component: Layout,
+    children: [
+      {
+        path: '/',
+        name: 'articlelist',
+        component: () => import('@/views/Manager/ArticleList'),
+        meta: { pagename: 'Article-Manager', title:'文章管理'}
+      },
+      {
+        path: '/article-edit',
+        name: 'articleedit',
+        component: () => import('@/views/Manager/ArticleEdit'),
+        meta: { pagename: 'Article-Edit', title:'文章编辑'}
       }
     ]
   },

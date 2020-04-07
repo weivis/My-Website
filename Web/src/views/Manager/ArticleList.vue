@@ -1,7 +1,7 @@
 <template>
 
   <div class="main">
-    article
+    articlelist
   </div>
 
 </template>
@@ -9,7 +9,7 @@
 <script>
 
 export default {
-  name: 'Article',
+  name: 'articlelist',
   components: {
   }
 }

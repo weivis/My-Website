@@ -10,10 +10,10 @@ from app.Extensions import db
 from app.Config import SERVER_GULAOBURL
 
 # 关于 UPLOAD_KEY和UPLOAD_KEY_FLOAD的用法
-UPLOAD_KEY = ['head','articlecover']
+UPLOAD_KEY = ['head','article_cover']
 UPLOAD_KEY_FLOAD = {
     'head':'/head',
-    'articlecover':'/article/cover'
+    'article_cover':'/article/cover'
     }
 '''
     UPLOAD_KEY 是上传时候要使用的key
@@ -96,7 +96,7 @@ def upload_file(request):
 
     newfilename = CreateNewFilename(ext)
 
-    if upload_key in ['articlecover']:
+    if upload_key in ['article_cover']:
         files = FileCompress(file)
     else:
         files = file

@@ -54,6 +54,7 @@ def upload_article(request):
     article_type = GetRequestJsonData(request, 'article_type', None)
     content_type = GetRequestJsonData(request, 'content_type', None)
     status = GetRequestJsonData(request, 'status', 0)
+    cover = GetRequestJsonData(request, 'cover', None)
 
     if not userid:
         return ReturnCode.paramete_error, '用户id异常', ''
@@ -70,6 +71,13 @@ def upload_article(request):
     if not article_type:
         return ReturnCode.paramete_error, '发布类型不能为空', ''  
 
+    if not cover:
+        return ReturnCode.paramete_error, '封面不能为空', ''  
+
+    if int(article_type) == 1:
+        if not content_type:
+            return ReturnCode.paramete_error, '作品类型不能为空', ''  
+
     new = Article()
     new.upload_userid = userid
     new.upload_time = datetime.now()
@@ -78,6 +86,7 @@ def upload_article(request):
     new.introduce = str(introduce)
     new.content = str(content)
     new.content_type = int(content_type)
+    new.cover = str(cover)
     new.status = status
 
     db.session.add(new)

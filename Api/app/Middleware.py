@@ -51,6 +51,8 @@ def UserTokenAuthPost(func=None):
         if request.method == 'POST':
             userkey = GetRequestJsonData(request, 'userid', None)
             token = GetRequestJsonData(request, 'token', None)
+            print('userkey:',userkey)
+            print('token:',token)
             if not userkey or not token:
                 return ReturnRequest(SystemCode.NotLogin, '请求参数有误', '')
 
