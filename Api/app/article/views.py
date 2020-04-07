@@ -40,7 +40,7 @@ def query_article_list(request):
 
     query_count, query_dataitems, query_datapages = SerializeQuerySet(querys, query_pages, per_page=100)
     return ReturnCode.ok, '', {
-        'list':Serialize(query_dataitems,obj='list', dataprocessing='getarticlelist'),
+        'list':Serialize(query_dataitems,obj='list', dataprocessing='getarticlelist', notreturn=['content']),
         'queryCount': query_count,
         'dataPges': query_datapages,
         'nowPage': query_pages
