@@ -1,5 +1,8 @@
 <template>
-    <vue2-editor v-model="strHtml" :disabled='!!disabled'></vue2-editor>
+<div id="oldapp">
+    <vue-editor v-model="strHtml" :disabled='!!disabled'></vue-editor>
+    <!-- <el-button @click="add" useCustomImageHandler @imageAdded="handleImageAdded" /> -->
+</div>
     <!-- @imageAdded="handleImageAdded" -->
 </template>
 <script>
@@ -15,7 +18,7 @@
       }
     },
     components: {
-      'vue2-editor': VueEditor
+      'vue-editor': VueEditor
     },
     watch: {
       $attrs (val) {
@@ -31,9 +34,13 @@
       // }
     },
     methods:{
+      // add() {
+        // console.log('上传图片')
+      // },
       // handleImageAdded(file, Editor, cursorLocation, resetUploader) {
+      // console.log('上传图片')
       // var formData = new FormData();
-      // formData.append("image", file);
+      // formData.append("image", file.file);
 
       // axios({
       //   url: Common.httpUrl + "/upload/file",
