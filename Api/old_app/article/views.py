@@ -1,12 +1,12 @@
 from app.Extensions import db
-from app.Kit import PaginatePages
+from app.Kit import GetRequestJsonData, GetRequestFormData, GetRequestArgsData, PaginatePages, PaginatePagesArgs
 from app.ReturnCode import ReturnCode
 from datetime import datetime
-from app.Models.db_Article import Article
+from app.Models import Article
 from app.ModelSerialize import Serialize, SerializeQuerySet
 
 def query_article(request):
-    id = request.get('id', None)
+    id = GetRequestArgsData(request, 'id', None)
     article = Article.query.filter(Article.id == id).first()
     if not article:
         return ReturnCode.paramete_error, '文章不存在或参数有误', ''
@@ -14,8 +14,8 @@ def query_article(request):
     return ReturnCode.ok, '', serialize
 
 def query_article_list(request):
-    article_type = request.get('article_type', None)
-    query_pages = PaginatePages(request,None)
+    article_type = GetRequestArgsData(request, 'article_type', None)
+    query_pages = PaginatePagesArgs(request,None)
 
     if not article_type:
         return ReturnCode.paramete_error, '获取的文章类型缺乏', ''
@@ -26,7 +26,7 @@ def query_article_list(request):
     if int(article_type) == 1:
         querys = querys.filter(Article.article_type == article_type)
 
-        content_type = request.get('content_type', None)
+        content_type = GetRequestArgsData(request, 'content_type', None)
         if content_type:
             querys = querys.filter(Article.content_type == content_type)
 
@@ -47,14 +47,17 @@ def query_article_list(request):
         }
 
 def upload_article(request):
-    current_account = request['current_account']
-    title = request.get('title', None)
-    introduce = request.get('introduce', None)
-    content = request.get('content', None)
-    article_type = request.get('article_type', None)
-    content_type = request.get('content_type', None)
-    status = request.get('status', 0)
-    cover = request.get('cover', None)
+    userid = GetRequestJsonData(request, 'userid', None)
+    title = GetRequestJsonData(request, 'title', None)
+    introduce = GetRequestJsonData(request, 'introduce', None)
+    content = GetRequestJsonData(request, 'content', None)
+    article_type = GetRequestJsonData(request, 'article_type', None)
+    content_type = GetRequestJsonData(request, 'content_type', None)
+    status = GetRequestJsonData(request, 'status', 0)
+    cover = GetRequestJsonData(request, 'cover', None)
+
+    if not userid:
+        return ReturnCode.paramete_error, '用户id异常', ''
 
     if not title:
         return ReturnCode.paramete_error, '标题不能为空', ''
@@ -76,7 +79,7 @@ def upload_article(request):
             return ReturnCode.paramete_error, '作品类型不能为空', ''  
 
     new = Article()
-    new.upload_userid = current_account.id
+    new.upload_userid = userid
     new.upload_time = datetime.now()
     new.article_type = int(article_type)
     new.title = str(title)

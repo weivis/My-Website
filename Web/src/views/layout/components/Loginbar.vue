@@ -50,7 +50,7 @@ export default {
     Logout_users() {
       const AuthUserData = this.AuthUserData();
       this.$http
-        .Logout(AuthUserData.userid, AuthUserData.token)
+        .Logout(AuthUserData.token)
         .then(response => {
           if (response.code === 200) {
             console.log('>用户退出登录')

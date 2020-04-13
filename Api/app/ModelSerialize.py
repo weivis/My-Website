@@ -1,32 +1,19 @@
+#Author: WeiVi
+# Flask-SQLAlchemySerialize
+# https://github.com/weivis/Flask-SQLAlchemySerialize
+
 import datetime
+
 from sqlalchemy.orm import class_mapper
 
 from app.Config import SERVER_STATICLOADURL
-
 from app.Kit import DateForStr, DateTimeForStr
-# def DateTimeForStr(s):
-#     '''
-#         DateTime > Str
-#         if not val out : str 00-00-00 00:00:00
-#     '''
-#     if not s:
-#         return '00-00-00 00:00:00'
-#     return datetime.strftime(s, "%Y-%m-%d %H:%M:%S")
 
-# def DateForStr(s):
-#     '''
-#         Date > Str
-#         if not val out : str 00-00-00
-#     '''
-#     if not s:
-#         return '00-00-00'
-#     return datetime.strftime(s, '%Y-%m-%d')
-
-# --------------------------------------------------
 
 class SerializeConfig:
     # 每页分多少条
     SQLALCHEMY_PAGINATE_PER = 10
+
 
 def SerializeQuerySet(querys, query_page, per_page=SerializeConfig.SQLALCHEMY_PAGINATE_PER):
     '''
@@ -43,7 +30,8 @@ def SerializeQuerySet(querys, query_page, per_page=SerializeConfig.SQLALCHEMY_PA
     query_data = querys.paginate(query_page, per_page=per_page)
     return query_count, query_data.items, query_data.pages
 
-def Serialize(models, obj='obj', userid=None, dataprocessing=None, notreturn = []):
+
+def Serialize(models, obj='obj', userid=None, dataprocessing=None, notreturn=[]):
     '''
         序列化器统一入口
         models
@@ -68,13 +56,14 @@ def Serialize(models, obj='obj', userid=None, dataprocessing=None, notreturn = [
     if obj == 'list':
         cache = []
         for model in models:
-            cache.append(SerializeItem(model, userid=userid, dataprocessing=dataprocessing, notreturn=notreturn))
+            cache.append(SerializeItem(model, userid=userid,
+                                       dataprocessing=dataprocessing, notreturn=notreturn))
         return cache
 
-    print('请先定义需要序列化的对象的类型')
     return False
 
-def SerializeItem(model,userid=None, dataprocessing = None, notreturn = []):
+
+def SerializeItem(model, userid=None, dataprocessing=None, notreturn=[]):
     '''
         序列化单个对象
     '''
@@ -93,10 +82,10 @@ def SerializeItem(model,userid=None, dataprocessing = None, notreturn = []):
 
                 cc = eval(getattr(model, c))
                 if isinstance(cc, dict):
-                    li.append((c,cc))
+                    li.append((c, cc))
 
                 if isinstance(cc, list):
-                    li.append((c,cc))
+                    li.append((c, cc))
 
             except:
 
@@ -125,73 +114,15 @@ def SerializeItem(model,userid=None, dataprocessing = None, notreturn = []):
 
                 if dataprocessing == 'getarticlelist':
                     if c == 'cover':
-                        li.append(('cover' , SERVER_STATICLOADURL + getattr(model, 'cover')))
+                        li.append(('cover', SERVER_STATICLOADURL +
+                                   getattr(model, 'cover')))
+
+                # if dataprocessing == 'getarticlelist':
+                #     if c == 'cover':
+                #         li.append(('cover' , SERVER_STATICLOADURL + getattr(model, 'cover')))
 
         else:
             pass
     for s in li:
         dicts.update(dict([s]))
-    return dicts
-
-def SerializeliData(model,userid=None, dataprocessing = None, notreturn = []):
-    '''
-        单对象序列化器
-    '''
-    li = []
-    dicts = {}
-
-    from sqlalchemy.orm import class_mapper
-    columns = [c.key for c in class_mapper(model.__class__).columns]
-
-    for c in columns:
-        print(c)
-
-        if str(c) not in notreturn:
-
-            try:
-                cc = eval(getattr(model, c))
-                if isinstance(cc, dict):
-                    li.append((c,cc))
-
-                if isinstance(cc, list):
-                    li.append((c,cc))
-
-            except:
-
-                if type(getattr(model, c)) == datetime.datetime:
-                    li.append((c, DateTimeForStr(getattr(model, c))))
-
-                elif type(getattr(model, c)) == datetime.date:
-                    li.append((c, DateForStr(getattr(model, c))))
-
-                else:
-                    if getattr(model, c) == '' or getattr(model, c) == None:
-                        li.append((c, ''))
-                    else:
-                        li.append((c, getattr(model, c)))
-
-                # 自增条件--------------------------------------------
-                if c == 'author_userid' and userid != None:
-                    li.append(('follow_status' ,GetFollowType(userid, getattr(model, c))))
-
-                if c == 'parent_comment_id':
-                    if int(getattr(model, 'seedtype')) == 1:
-                        li.append(('parent_comment_id' , getattr(model, 'id')))
-
-                if dataprocessing == 'queryvideo':
-        
-                    videotag = VideoTag.query.filter(VideoTag.videoid == getattr(model, 'id')).all()
-                    dataprocessing_taglist = [{
-                        'tagid':i.tagid,
-                        'tagname':VideoTagName.query.filter_by(id = i.tagid).first().tagname
-                    } for i in videotag]
-
-                    li.append(('taglist' , dataprocessing_taglist))
-
-        else:
-            pass
-
-    for s in li:
-        dicts.update(dict([s]))
-
     return dicts

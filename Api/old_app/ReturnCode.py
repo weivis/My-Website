@@ -19,13 +19,13 @@ class ReturnCode:
 
 class SystemCode:
     # Token失效时返回
-    TokenInvalid = 10086
+    TokenInvalid = 10000
 
     # 没登陆的时候返回错误码
     NotLogin = 10086
 
     # 黑名单用户返回值
-    BlacklistUserLogin = 10000
+    BlacklistUserLogin = 0000
 
     # 错误请求时返回
-    ErrorRequestMethod = 603
+    ErrorRequestMethod = 1000

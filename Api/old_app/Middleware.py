@@ -1,27 +1,14 @@
 from functools import wraps
 
 from flask import request
-from flask_login import current_user
 
 from app.Common import ReturnRequest
-from app.Kit import GetRequestJsonData
-from app.Models.db_Account import Account
 from app.ReturnCode import SystemCode, ReturnCode
 
-# 通用请求----------------------------------------------------------------------------------------------------
+from app.Kit import GetRequestJsonData
+from app.Models import User as UserAccount
 
-def requestGET(func=None):
-    '''
-        [POST]通用Post请求
-        条件: POST
-    '''
-    @wraps(func)
-    def wrapper(*args, **kwargs):
-        if request.method == 'GET':
-            return func(request, *args, **kwargs)
-        else:
-            return ReturnRequest(SystemCode.ErrorRequestMethod,'请求方法不对','')
-    return wrapper
+# 基础请求----------------------------------------------------------------------------------------------------
 
 def requestPOST(func=None):
     '''
@@ -36,7 +23,7 @@ def requestPOST(func=None):
             return ReturnRequest(SystemCode.ErrorRequestMethod,'请求方法不对','')
     return wrapper
 
-# Token鉴权认证请求 -------------------------------------------------------------------------------------------------------------
+# TokenAuthPost -------------------------------------------------------------------------------------------------------------
 
 def TokenAuthPost(user_group):
     '''
@@ -56,7 +43,7 @@ def TokenAuthPost(user_group):
                 if not token:
                     return ReturnRequest(ReturnCode.paramete_error, '非法请求', '')
 
-                account = Account.query.filter(Account.token == token).first()
+                account = UserAccount.query.filter(UserAccount.token == token).first()
 
                 if not account:
                     return ReturnRequest(SystemCode.TokenInvalid, 'Token已失效或不正确, 请重新登录', '')
@@ -65,7 +52,7 @@ def TokenAuthPost(user_group):
                     print('注意！@UserTokenAuthPost: 未设置可访问的用户权限')
                     return ''
 
-                if account.account_group not in user_group:
+                if account.userstatus not in user_group:
                     return ReturnRequest(ReturnCode.paramete_error, '你没有权限访问该接口', '')
                 
                 request.json['current_account'] = account

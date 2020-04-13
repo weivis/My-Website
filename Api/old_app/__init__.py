@@ -3,7 +3,7 @@ from flask import Flask, render_template
 
 from app import Config
 from app.Blueprint import config_blueprint
-from app.Extensions import config_extensions
+from app.Extensions import config_extensions  # , login_manager
 
 
 def config_errorhandler(app):
@@ -16,7 +16,6 @@ def config_errorhandler(app):
 def create_app():
 
   app = Flask(__name__, static_folder='static')
-
   app.config.from_object(Config)
 
   app.debug=True
@@ -28,3 +27,8 @@ def create_app():
   config_errorhandler(app)
 
   return app
+
+# from app.Models import UserAccount, UserInfo
+# @login_manager.user_loader
+# def load_user(user_id):
+#     return UserInfo.query.filter_by(id = user_id).first()

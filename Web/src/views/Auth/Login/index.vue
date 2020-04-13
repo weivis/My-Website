@@ -107,7 +107,7 @@ export default {
             this.Login_user(
               response.data.Token,
               response.data.userID,
-              response.data.userstatus
+              response.data.group
             );
             this.LoginUserInfo(
               response.data.username,

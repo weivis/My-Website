@@ -7,7 +7,5 @@ def ReturnRequest(code, msg, data):
     if not msg:
         msg = 'OK'
     jso = {'code':code, 'msg': msg,'data': data}
-
-    # 打印每个请求的返回结果
-    # print('Return : ' + str(code) + ' => ' + str(jso))
+    print('Return : ' + str(code) + ' => ' + str(jso))
     return jsonify(jso)

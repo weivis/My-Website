@@ -6,8 +6,6 @@
 
 from datetime import datetime
 import math
-from random import Random
-import re
 
 # 列表操作-------------------------------------------------------------
 
@@ -83,6 +81,17 @@ def DateForStr(s):
 
 # 获取请求体内的字符串 --------------------------------------------------------
 
+def GetRequestArgsData(request,key,nones):
+    '''
+        Args
+        获取请求体内的字段对应值
+        GetRequestArgsData(request, '字段', '默认值')
+    '''
+    if nones:
+        return request.args.get(str(key),nones)
+    else:
+        return request.args.get(str(key),None)
+
 def GetRequestJsonData(request,key,nones):
     '''
         Json
@@ -115,26 +124,24 @@ def PaginatePages(request, key):
     '''
     if key == None:
         key = 'queryPage'
-    pages = request.get(str(key), 1)
+    pages = request.json.get(str(key), 1)
 
     if pages == 0 or str(pages) == '':
         pages = 1
 
     return pages
 
-# 字符串校验---------------------------------------------------------------------------
+def PaginatePagesArgs(request, key):
+    '''
+        Json
+        获取分页数
+        key = 自定义参数名 or 默认 : queryPage
+    '''
+    if key == None:
+        key = 'queryPage'
+    pages = request.args.get(str(key), 1)
 
-def Check_EmailStr(email):
-    pattern = re.compile(r"\"?([0-9A-Za-z\-_\.]+@\w+\.\w+)\"?")#re.compile(r"\"?([a-zA-Z0-9_-]+@\w+\.\w+)\"?")
-    return re.match(pattern, email)
+    if pages == 0 or str(pages) == '':
+        pages = 1
 
-# 随机生成字符串---------------------------------------------------------------------------
-
-def RandomStr(randomlength=8):
-    str = ''
-    chars = 'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz0123456789'
-    length = len(chars)-1
-    random = Random()
-    for i in range(randomlength):
-        str += chars[random.randint(0, length)]
-    return str   # 将拼接的字符串返回
+    return pages
