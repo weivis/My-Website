@@ -55,6 +55,7 @@ def upload_article(request):
     content_type = request.get('content_type', None)
     status = request.get('status', 0)
     cover = request.get('cover', None)
+    print(content_type)
 
     if not title:
         return ReturnCode.paramete_error, '标题不能为空', ''
@@ -74,6 +75,8 @@ def upload_article(request):
     if int(article_type) == 1:
         if not content_type:
             return ReturnCode.paramete_error, '作品类型不能为空', ''  
+    else:
+        content_type = 0
 
     new = Article()
     new.upload_userid = current_account.id

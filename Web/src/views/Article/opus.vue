@@ -40,12 +40,13 @@ export default {
   data(){
     return{
       desgin:[
-      ]
+      ],
+      queryPage:1
     }
   },
   created(){
     this.httpUrl = this.Common.httpUrl;
-    this.$http.article_opuslist(1)
+    this.$http.article_opuslist(1,this.queryPage)
     .then(response => {
       if (response.code == 200){
         this.desgin = response.data.list

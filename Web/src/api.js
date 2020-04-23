@@ -33,35 +33,38 @@ export function article_query(id) {
 }
 
 // 获取作品列表
-export function article_opuslist(content_type) {
+export function article_opuslist(content_type, queryPage) {
   return request({
     url: '/article/query-list',
     method: 'post',
     data: {
       article_type:1,
-      content_type:content_type
+      content_type:content_type,
+      queryPage:queryPage
     }
   })
 }
 
 // 获取文章列表
-export function article_articlelist() {
+export function article_articlelist(queryPage) {
   return request({
     url: '/article/query-list',
     method: 'post',
     data: {
-      article_type:2
+      article_type:2,
+      queryPage:queryPage
     }
   })
 }
 
 // 获取项目列表
-export function article_projlist() {
+export function article_projlist(queryPage) {
   return request({
     url: '/article/query-list',
     method: 'post',
     data: {
-      article_type:3
+      article_type:3,
+      queryPage:queryPage
     }
   })
 }
