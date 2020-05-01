@@ -41,7 +41,7 @@ const routes = [
   },
   {
     // 上传文章
-    path: '/upload',
+    path: '/article-upload',
     component: Layout,
     children: [
       {
@@ -54,7 +54,7 @@ const routes = [
   },
   {
     // 管理
-    path: '/manager',
+    path: '/article-manager',
     component: Layout,
     children: [
       {
@@ -64,10 +64,23 @@ const routes = [
         meta: { pagename: 'Article-Manager', title:'文章管理'}
       },
       {
-        path: '/article-edit',
+        path: '/edit',
         name: 'articleedit',
         component: () => import('@/views/Manager/ArticleEdit'),
         meta: { pagename: 'Article-Edit', title:'文章编辑'}
+      }
+    ]
+  },
+  {
+    // 推荐管理
+    path: '/recommend-manager',
+    component: Layout,
+    children: [
+      {
+        path: '/',
+        name: 'recommendlist',
+        component: () => import('@/views/Manager/RecommendList'),
+        meta: { pagename: 'Recommend-Manager', title:'推荐管理'}
       }
     ]
   },

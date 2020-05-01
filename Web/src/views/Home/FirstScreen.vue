@@ -37,7 +37,8 @@
       </div>
 
       <div class='right-imgbox'>
-        <img :src="this.Common.httpUrl + '/static/1.png'" />
+        <live2d/>
+        <!-- <img :src="this.Common.httpUrl + '/static/1.png'" /> -->
       </div>
     </div>
   </div>
@@ -45,6 +46,7 @@
 </template>
 
 <script>
+import Live2d from './Live2d.vue'
 export default {
   name: 'firstscreen',
   data(){
@@ -58,6 +60,7 @@ export default {
     }
   },
   components: {
+    Live2d
   }
 }
 </script>
@@ -69,6 +72,7 @@ export default {
   }
 
   .FirstScreen{
+    min-height: 700px;
     .left-sidebar{
       z-index: 20;
     }
@@ -84,7 +88,7 @@ export default {
     .left-sidebar{
       width: 400px;
       position: absolute;
-      left: 50px;
+      left: 20vh;
       top: 215px;
     }
     .content-introduce{

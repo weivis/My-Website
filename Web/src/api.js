@@ -32,6 +32,20 @@ export function article_query(id) {
   })
 }
 
+// 管理文章获取列表
+export function query_article(article_type, content_type, queryPage) {
+  return request({
+    url: '/article/query-list',
+    method: 'post',
+    data: {
+      admin:'admin',
+      article_type:article_type,
+      content_type:content_type,
+      queryPage:queryPage
+    }
+  })
+}
+
 // 获取作品列表
 export function article_opuslist(content_type, queryPage) {
   return request({
@@ -66,6 +80,57 @@ export function article_projlist(queryPage) {
       article_type:3,
       queryPage:queryPage
     }
+  })
+}
+
+// 管理员修改文章状态
+export function admin_change_articlestatus(id,type) {
+  return request({
+    url: '/article/change',
+    method: 'post',
+    data: {
+      id:id,
+      to:type
+    }
+  })
+}
+
+// 首页更多文章-获取
+export function index_morelink_list(data) {
+  return request({
+    url: '/index/more_article/list',
+    method: 'post',
+    data: data
+  })
+}
+
+// 首页更多文章-添加
+export function index_morelink_add(articleid, title, cover, introduce, link) {
+  return request({
+    url: '/index/more_article/add',
+    method: 'post',
+    data: {
+      articleid:articleid,
+      title:title,
+      cover:cover,
+      introduce:introduce,
+      link:link
+    }
+  })
+}
+
+// 首页更多文章-变更
+export function index_morelink_change(id, change_type, sort) {
+  const data = {
+    id:id,
+    change_type:change_type,
+    sort:sort
+  }
+  console.log(data)
+  return request({
+    url: '/index/more_article/change',
+    method: 'post',
+    data: data
   })
 }
 

@@ -9,11 +9,15 @@
         <el-dropdown-menu slot="dropdown">
 
           <div v-if="this.isAdmin()">
-            <a href="/upload"><el-dropdown-item>发布文章</el-dropdown-item></a>
+            <router-link to="/article-upload"><el-dropdown-item>文章发布</el-dropdown-item></router-link>
           </div>
 
           <div v-if="this.isAdmin()">
-            <a href="/manager"><el-dropdown-item>管理文章</el-dropdown-item></a>
+            <router-link to="/article-manager"><el-dropdown-item>文章管理</el-dropdown-item></router-link>
+          </div>
+
+          <div v-if="this.isAdmin()">
+            <router-link to="/recommend-manager"><el-dropdown-item>推荐管理</el-dropdown-item></router-link>
           </div>
 
           <el-dropdown-item @click.native="Logout_users">退出登录</el-dropdown-item>
@@ -23,9 +27,9 @@
     </div>
 
     <div class="login" v-else>
-      <a :href="loginurl">
-        <div class="visitor_login">游客登录</div>
-      </a>
+        <router-link :to="loginurl">
+          <div class="visitor_login">游客登录</div>
+        </router-link>
     </div>
   </div>
 </template>

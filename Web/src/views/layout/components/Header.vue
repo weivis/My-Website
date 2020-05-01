@@ -2,10 +2,10 @@
     <div class="layout-header">
         <div class="main-content width-normal header-content">
             <div class="content-libox">
-                <a href="/">
+                <router-link to="/">
                     <img class="logo" :src="this.Common.httpUrl + '/static/logo.png'">
                     <div class="comname">WeiVi rd</div>
-                </a>
+                </router-link>
                 <div class="pagename">{{$route.meta.pagename}}</div>
                 <layout-lnav/>
                 <layout-loginbar/>
