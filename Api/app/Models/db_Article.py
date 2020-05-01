@@ -41,3 +41,11 @@ class Article(db.Model):
         0 = 正常
         1 = 下架
     '''
+    index = db.Column(db.Boolean, default=False)
+    '''
+        true的为在首页展示
+    '''
+    is_delete = db.Column(db.Boolean, default=False)
+    '''
+        是否删除
+    '''
