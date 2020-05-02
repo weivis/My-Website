@@ -19,6 +19,7 @@ import * as StoreUser from './store/user'
 import Common from './Common'
 import Auth from './Auth'
 import * as api from './api'
+import Vue2Editor from "vue2-editor";
 
 Vue.prototype.$http = api
 Vue.prototype.Common = Common
@@ -37,6 +38,7 @@ Vue.prototype.LogoutUserInfo = StoreUser.RemoveUserInfo
 Vue.use(ElementUI, { locale })
 Vue.use(VueParticles)
 Vue.use(VueLive2d)
+Vue.use(Vue2Editor);
 new Vue({
   el: '#app',
   router,

@@ -4,7 +4,7 @@ from app import create_app
 from app.Extensions import db
 from flask_migrate import MigrateCommand, Migrate
 from flask_script import Manager, Server, Command
-from app import Models
+from app.Models import db_Account, db_Article, db_Photo, db_System
 
 app = create_app()
 manager = Manager(app)

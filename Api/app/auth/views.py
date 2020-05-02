@@ -32,6 +32,9 @@ def register(request):
     if password != password:
         return ReturnCode.paramete_error, '两次密码输入不一致', ''
 
+    if not Check_EmailStr(email):
+        return ReturnCode.paramete_error, '邮箱格式有误', ''
+
     addacc = Account()
     addacc.email = email
     addacc.password = generate_password_hash(password)

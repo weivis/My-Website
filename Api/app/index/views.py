@@ -77,7 +77,7 @@ def add_more_article(request):
         title = art.title
         cover = art.cover
         introduce = art.introduce
-        link = '/opus/design?id=' + str(art.id)
+        link = '/page?id=' + str(art.id)
 
     add.title = title
     add.cover = cover
@@ -132,3 +132,19 @@ def change_more_article(request):
     except:
         db.session().rollback()
         return ReturnCode.server_error, '系统出错', ''
+
+def index_dynamics_data(request):
+    project = Article.query.filter(Article.article_type == 3, Article.index == True, Article.is_delete == False).order_by(Article.upload_time.desc()).limit(6)
+    article = Article.query.filter(Article.article_type == 2, Article.index == True, Article.is_delete == False).order_by(Article.upload_time.desc()).limit(6)
+    projectlist = []
+    articlelist = []
+    for i in project:
+        projectlist.append(Serialize(i, obj='obj', dataprocessing='getarticlelist', notreturn=['content']))
+
+    for s in article:
+        articlelist.append(Serialize(s, obj='obj', dataprocessing='getarticlelist', notreturn=['content']))
+
+    return 200, '', {
+        'project':projectlist,
+        'article':articlelist
+    }

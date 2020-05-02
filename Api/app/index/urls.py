@@ -58,3 +58,16 @@ def change_more_article(request):
     '''
     c, m, d = views.change_more_article(request.json)
     return ReturnRequest(c, m, d)
+
+@index.route('/index-dynamics/data', methods=["POST"])
+@requestPOST
+def index_dynamics_data(request):
+    '''更多文章-获取
+        Param:
+            {}
+        ReturnCode:
+            200 成功
+        ReturnJson:
+    '''
+    c, m, d = views.index_dynamics_data(request.json)
+    return ReturnRequest(c, m, d)

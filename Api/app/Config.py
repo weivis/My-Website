@@ -35,7 +35,7 @@ MAIL_PASSWORD = 'Kolemail123456'
 
 # ----------------------------------------------------------------------
 
-API_DOC_MEMBER = ['auth','article','upload', 'index']
+API_DOC_MEMBER = ['auth','article','upload', 'index', 'photo']
 
 # 需要排除的 RESTful Api 文档
 RESTFUL_API_DOC_EXCLUDE = []

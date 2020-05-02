@@ -10,11 +10,13 @@ from app.Extensions import db
 from app.Config import SERVER_GULAOBURL
 
 # 关于 UPLOAD_KEY和UPLOAD_KEY_FLOAD的用法
-UPLOAD_KEY = ['head','article_cover', 'link']
+UPLOAD_KEY = ['head','article_cover', 'article_img', 'link', 'photo']
 UPLOAD_KEY_FLOAD = {
     'head':'/head',
     'article_cover':'/article/cover',
-    'link':'/link/cover'
+    'article_img':'/article/img',
+    'link':'/link/cover',
+    'photo':'/photo'
     }
 '''
     UPLOAD_KEY 是上传时候要使用的key

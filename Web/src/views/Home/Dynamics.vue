@@ -9,18 +9,18 @@
         </div>
         <div class="content">
           <div class="contentl">
-            <div class="content-title">研发项目</div>
+            <div class="content-title">个人项目</div>
             <div class="content-list">
 
               <div class="content-porj-item" v-for="(item,index) in projects" :key="index">
                 <el-row :gutter="20">
                   <el-col :span="11">
-                    <a :href="item.link">
+                    <a :href="'/page?id=' + item.id">
                       <el-image class="content-porj-item-cover" :src="item.cover"></el-image>
                     </a>
                   </el-col>
                   <el-col :span="13">
-                    <a :href="item.link">
+                    <a :href="'/page?id=' + item.id">
                       <div class="content-porj-item-text-title">{{item.title}}</div>
                       <div class="content-porj-item-text-introduce">{{item.introduce}}</div>
                     </a>
@@ -38,13 +38,14 @@
               <div class="content-avet-item" v-for="(item,index) in article" :key="index">
                 <el-row :gutter="20">
                   <el-col :span="8">
-                    <a :href="item.link">
+                    <a :href="'/page?id=' + item.id">
                       <el-image class="content-avet-item-cover" :src="item.cover"></el-image>
                     </a>
                   </el-col>
                   <el-col :span="13">
-                    <a :href="item.link">
+                    <a :href="'/page?id=' + item.id">
                       <div class="content-avet-item-title">{{item.title}}</div>
+                      <div class="content-porj-item-text-introduce">{{item.introduce}}</div>
                     </a>
                   </el-col>
                 </el-row>
@@ -75,33 +76,36 @@ export default {
         backgroundImage:"url(" + Common.httpUrl + '/static/dynamics-background.png' + ")",
       },
       projects:[
-        {
-          cover:'http://127.0.0.1:8080/static/proj1.png',
-          title:'iliya Ai',
-          introduce:'iliyaA 伊莉雅人工智能助手',
-          link:'1'
-        }
       ],
       article:[
-        {
-          cover:'http://127.0.0.1:8080/static/proj1.png',
-          title:'Niputv视频网站 视频上传技术解析 Python  Flask 处理转码分发上传解决方案',
-          link:'1'
-        },
-        {
-          cover:'http://127.0.0.1:8080/static/proj1.png',
-          title:'Python + AE云视频渲染解决方案',
-          link:'1'
-        }
       ]
     }
   },
+  created() {
+    this.query_list();
+  },
+  methods: {
+    query_list() {
+      this.$http
+        .index_dynamics_data()
+        .then(response => {
+          if (response.code == 200) {
+            this.projects = response.data.project.slice(0,2);
+            this.article = response.data.article.slice(0,3);
+          }
+        })
+        .catch(error => {
+          console.log("error", error);
+        });
+    }
+  }
 }
 </script>
 
 <style lang="scss" scoped>
 .Dynamics{
   height: 800px;
+  margin-bottom: 100px;
   .headerbox{
     width: 100%;
     overflow: hidden;
@@ -117,7 +121,9 @@ export default {
   .headertitleen{margin-top: 5px;font-size: 30px;font-weight: bold; width: 100%;}
   .content{
     width: 100%;
-    height: 500px;
+    // height: 500px;
+    margin-bottom: 30px;
+    overflow: hidden;
   }
   .contentl{
     width: 48%;

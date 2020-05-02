@@ -134,6 +134,51 @@ export function index_morelink_change(id, change_type, sort) {
   })
 }
 
+// 首页更多文章-变更
+export function index_dynamics_data() {
+  return request({
+    url: '/index/index-dynamics/data',
+    method: 'post',
+    data: {}
+  })
+}
+
+// 相册列表
+export function photo_list() {
+  return request({
+    url: '/photo/list',
+    method: 'post',
+    data: {}
+  })
+}
+
+// 相册添加图片
+export function photo_add(link, title) {
+  return request({
+    url: '/photo/add',
+    method: 'post',
+    data: {link:link, title:title}
+  })
+}
+
+// 相册更改图片
+export function photo_change(id, change_type, sort) {
+  return request({
+    url: '/photo/change',
+    method: 'post',
+    data: {id:id, change_type:change_type, sort:sort}
+  })
+}
+
+// 相册更改图片
+export function article_edit(data) {
+  return request({
+    url: '/article/edit',
+    method: 'post',
+    data: data
+  })
+}
+
 // 登录
 export function login(email, password) {
   return request({
@@ -143,6 +188,15 @@ export function login(email, password) {
       email,
       password
     }
+  })
+}
+
+// 登录
+export function regaccount(data) {
+  return request({
+    url: '/auth/register',
+    method: 'post',
+    data: data
   })
 }
 

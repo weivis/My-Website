@@ -2,6 +2,21 @@ from app.article import article, views
 from app.Common import ReturnRequest
 from app.Middleware import requestPOST, TokenAuthPost
 
+@article.route('/edit', methods=["POST"])
+@requestPOST
+def article_edit(request):
+    '''获取单篇文章
+
+        Param:
+
+        ReturnCode:
+
+        ReturnJson:
+    '''
+    c,m,d = views.edit_article(request.json)
+    return ReturnRequest(c,m,d)
+
+
 # 获取文章
 @article.route('/query-article', methods=["POST"])
 @requestPOST

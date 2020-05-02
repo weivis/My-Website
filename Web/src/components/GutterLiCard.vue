@@ -13,7 +13,7 @@
             <div class="item-introduce">{{ item.introduce }}</div>
             <div class="item-linkbutt">了解更多 ></div>
           </router-link>
-          <a :href="item.link" v-if="item.line_type == 1">
+          <a :href="item.link" target="_blank" v-if="item.line_type == 1">
             <div class="item-imgbox">
               <el-image class="item-img" :src="item.cover"></el-image>
             </div>

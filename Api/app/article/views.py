@@ -6,6 +6,42 @@ from app.Models.db_Article import Article
 from app.ModelSerialize import Serialize, SerializeQuerySet
 from app.Models.db_Account import Account
 
+def edit_article(request):
+    id = request.get('id', None)
+    article = Article.query.filter(Article.id == id).first()
+    if not article:
+        return ReturnCode.paramete_error, '文章不存在或参数有误', ''
+
+    title = request.get('title', None)
+    introduce = request.get('introduce', None)
+    content = request.get('content', None)
+    cover = request.get('cover', None)
+
+    if not title:
+        return 400, '标题不能为空', {}
+
+    if not introduce:
+        return 400, '介绍不能为空', {}
+
+    if not content:
+        return 400, '内容不能为空', {}
+
+    if cover:
+        article.cover = cover
+
+    article.title = title
+    article.introduce = introduce
+    article.content = content
+
+    try:
+        db.session.commit()
+        return ReturnCode.ok, '成功', {}
+
+    except:
+        db.session().rollback()
+        return ReturnCode.server_error, '系统出错', ''
+
+
 def query_article(request):
     id = request.get('id', None)
     article = Article.query.filter(Article.id == id).first()

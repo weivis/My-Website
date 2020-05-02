@@ -26,12 +26,10 @@
         <div class="content-longintroduction">{{longintroduction}}</div>
         <div class="sidebar-box">
           <div v-for="(item,index) in button" :key="index">
-            <div v-if="item.type == 1">
-              <div class="sidebar-button">{{item.title}}</div>
-            </div>
-            <div v-else>
-              <div class="sidebar-button s2">{{item.title}}</div>
-            </div>
+              <a :href="item.link">
+              <el-button type="primary" v-if="item.type == 1" class="elbutton">{{item.title}}</el-button>
+              <el-button v-if="item.type == 2" class="elbutton">{{item.title}}</el-button>
+              </a>
           </div>
         </div>
       </div>
@@ -54,8 +52,8 @@ export default {
       introduce:'欢迎来到WeiVi的 个人主页',
       longintroduction:'我的主页上有我的设计作品 动画作品 软件 程序 游戏 获奖作品等众多内容 欢迎阅读  如果想快速了解我可以点击下方的按钮 前往',
       button:[
-        {link:'/', title:'WeiVi个人介绍 >', type:1},
-        {link:'/', title:'个人项目和作品 >', type:2},
+        {link:'/opus', title:'我的设计作品 >', type:1},
+        {link:'/proj', title:'个人项目作品 >', type:2},
       ]
     }
   },
@@ -66,6 +64,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.elbutton{
+  float: left;
+  margin-right: 25px;
+}
   #particles-js{
     width: 100%;
     position:absolute;z-index:10

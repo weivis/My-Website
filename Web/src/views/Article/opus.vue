@@ -11,7 +11,7 @@
 
               <el-col :span="6" v-for="(item, index) in desgin" :key="index">
                 <div class="for-item">
-                  <el-link :href="'/opus/design?id=' + item.id" target="_blank" :underline="false">
+                  <el-link :href="'/page?id=' + item.id" target="_blank" :underline="false">
                     <div class="item-cover">
                       <el-image class="list-imgitem-img" :src="item.cover" fit='scale-down'/>
                     </div>
