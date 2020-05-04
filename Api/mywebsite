@@ -1,6 +1,6 @@
 server {
     listen 80;
-    server_name www.weivird.com/;
+    server_name www.weivird.com;
     
     rewrite_log             on;
     charset                 utf8;
