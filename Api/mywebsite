@@ -1,0 +1,23 @@
+server {
+    listen 80;
+    server_name www.weivird.com/;
+    
+    rewrite_log             on;
+    charset                 utf8;
+
+    client_max_body_size    1024m;
+
+    access_log  /root/log/nginx/mywebsite.access.log;
+    error_log  /root/log/nginx/mywebsite.error.log;
+
+    location /api {
+        include     /etc/nginx/uwsgi_params;
+        uwsgi_pass  unix:/tmp/mywebsite.sock;
+    }
+
+    location / {
+        alias       /root/server/My-Website/Web/;
+        add_header  Cache-Control   public;
+        try_files   $uri    /index.html;
+    }
+}
