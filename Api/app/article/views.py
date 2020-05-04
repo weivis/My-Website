@@ -4,6 +4,43 @@ from app.ReturnCode import ReturnCode
 from datetime import datetime
 from app.Models.db_Article import Article
 from app.ModelSerialize import Serialize, SerializeQuerySet
+from app.Models.db_Account import Account
+
+def edit_article(request):
+    id = request.get('id', None)
+    article = Article.query.filter(Article.id == id).first()
+    if not article:
+        return ReturnCode.paramete_error, '文章不存在或参数有误', ''
+
+    title = request.get('title', None)
+    introduce = request.get('introduce', None)
+    content = request.get('content', None)
+    cover = request.get('cover', None)
+
+    if not title:
+        return 400, '标题不能为空', {}
+
+    if not introduce:
+        return 400, '介绍不能为空', {}
+
+    if not content:
+        return 400, '内容不能为空', {}
+
+    if cover:
+        article.cover = cover
+
+    article.title = title
+    article.introduce = introduce
+    article.content = content
+
+    try:
+        db.session.commit()
+        return ReturnCode.ok, '成功', {}
+
+    except:
+        db.session().rollback()
+        return ReturnCode.server_error, '系统出错', ''
+
 
 def query_article(request):
     id = request.get('id', None)
@@ -14,29 +51,58 @@ def query_article(request):
     return ReturnCode.ok, '', serialize
 
 def query_article_list(request):
+    admin = request.get('admin', None)
     article_type = request.get('article_type', None)
     query_pages = PaginatePages(request,None)
 
     if not article_type:
         return ReturnCode.paramete_error, '获取的文章类型缺乏', ''
 
-    querys = Article.query.filter(Article.status == 0).order_by(Article.upload_time.desc())
+    if admin == 'admin':
+        # print('管理员模式')
+        querys = Article.query.filter().order_by(Article.upload_time.desc())
 
-    # 作品
-    if int(article_type) == 1:
-        querys = querys.filter(Article.article_type == article_type)
+        # 作品
+        if int(article_type) == 1:
+            querys = querys.filter(Article.article_type == article_type, Article.is_delete == False)
 
-        content_type = request.get('content_type', None)
-        if content_type:
-            querys = querys.filter(Article.content_type == content_type)
+            content_type = request.get('content_type', None)
+            if content_type:
+                querys = querys.filter(Article.content_type == content_type)
 
-    # 文章
-    if int(article_type) == 2:
-        querys = querys.filter(Article.article_type == article_type)
+        # 文章
+        if int(article_type) == 2:
+            querys = querys.filter(Article.article_type == article_type, Article.is_delete == False)
 
-    # 项目
-    if int(article_type) == 3:
-        querys = querys.filter(Article.article_type == article_type)
+        # 项目
+        if int(article_type) == 3:
+            querys = querys.filter(Article.article_type == article_type, Article.is_delete == False)
+
+        if int(article_type) == 4:
+            querys = querys.filter(Article.is_delete == True)
+
+    else:
+        # print('游客模式')
+        querys = Article.query.filter(Article.status == 0, Article.is_delete == False).order_by(Article.upload_time.desc())
+
+        # 作品
+        if int(article_type) == 1:
+            querys = querys.filter(Article.article_type == article_type)
+
+            content_type = request.get('content_type', None)
+            if content_type:
+                querys = querys.filter(Article.content_type == content_type)
+
+        # 文章
+        if int(article_type) == 2:
+            querys = querys.filter(Article.article_type == article_type)
+
+        # 项目
+        if int(article_type) == 3:
+            querys = querys.filter(Article.article_type == article_type)
+
+        if int(article_type) == 4:
+            querys = querys.filter(Article.is_delete == True)
 
     query_count, query_dataitems, query_datapages = SerializeQuerySet(querys, query_pages, per_page=100)
     return ReturnCode.ok, '', {
@@ -95,6 +161,47 @@ def upload_article(request):
         return ReturnCode.ok, '上传成功', {
             'id':new.id
         }
+
+    except:
+        db.session().rollback()
+        return ReturnCode.server_error, '系统出错', ''
+
+def change_article(request):
+    id = request.get('id',None)
+
+    if not id:
+        return 201, '文章id不能为空', {}
+
+    to = request.get('to',None)
+    article = Article.query.filter(Article.id == id).first()
+
+    if not article:
+        return 202, '文章不存在', {}
+
+    if not to:
+        return 203, '修改的状态不存在', {}
+
+    if to == 1:
+        article.status = 0
+
+    if to == 2:
+        article.status = 1
+
+    if to == 3:
+        article.is_delete = True
+
+    if to == 4:
+        article.is_delete = False
+
+    if to == 5:
+        article.index = True
+
+    if to == 6:
+        article.index = False   
+        
+    try:
+        db.session.commit()
+        return ReturnCode.ok, '成功', {}
 
     except:
         db.session().rollback()

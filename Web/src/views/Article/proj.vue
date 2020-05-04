@@ -5,20 +5,20 @@
 
           <div class="item" :span="12" v-for="(item, index) in list" :key="index">
             <div class="cover">
-              <a :href="'/opus/design?id=' + item.id" target="_blank">
+              <a :href="'/page?id=' + item.id" target="_blank">
                 <img class="cover-img" :src="item.cover" >
               </a>
             </div>
 
             <div class="info">
               <div class="info-h">
-                <a :href="'/opus/design?id=' + item.id" target="_blank">
+                <a :href="'/page?id=' + item.id" target="_blank">
                   <div class="title">{{item.title}}</div>
                   <div class="introduce">{{item.introduce}}</div>
                 </a>
               </div>
               <div class="bar">
-                <a :href="'/opus/design?id=' + item.id" target="_blank">
+                <a :href="'/page?id=' + item.id" target="_blank">
                 <el-button type="primary">主要按钮</el-button>
                 </a>
               </div>

@@ -7,7 +7,7 @@
             <img class="floadhead-img" :src="this.Common.httpUrl + '/static/head.png'" />
           </div>
           <div class="myinforightbox">
-            <div class="myinfo-myname">{{myname}}</div>
+            <div class="myinfo-myname">{{myname}}的个人介绍</div>
             <div class="myinfo-myintroduce">{{myintroduce}}</div>
           </div>
         </div>

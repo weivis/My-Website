@@ -7,13 +7,13 @@
           <div class="item">
 
             <div class="cover">
-              <a :href="'/opus/design?id=' + item.id" target="_blank">
+              <a :href="'/page?id=' + item.id" target="_blank">
                 <img class="cover-img" :src="item.cover" >
               </a>
             </div>
 
             <div class="info">
-              <a :href="'/opus/design?id=' + item.id" target="_blank">
+              <a :href="'/page?id=' + item.id" target="_blank">
                 <div class="title">{{item.title}}</div>
                 <div class="introduce">{{item.introduce}}</div>
               </a>

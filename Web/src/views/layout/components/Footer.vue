@@ -19,7 +19,8 @@
                 <el-col :span="4">
                     <div class="mainbav-title">文章</div>
                     <div class="mainbav-itemlist">
-                        <li v-for="(item,index) in article" :key="index"><a class="mainbav-item" :href="item.link"><div class="mainbav-item">{{item.title}}</div></a></li>
+                        <li v-for="(item,index) in article" :key="index"><a class="mainbav-item" :href="'/page?id=' + item.id"><div class="mainbav-item">{{item.title}}</div></a></li>
+                        <li><a class="mainbav-item" href="/opus"><div class="mainbav-item">更多文章 》</div></a></li>
                     </div>
                 </el-col>
                 <el-col :span="4">
@@ -31,7 +32,8 @@
                 <el-col :span="4">
                     <div class="mainbav-title">个人项目</div>
                     <div class="mainbav-itemlist">
-                        <li v-for="(item,index) in project" :key="index"><a class="mainbav-item" :href="item.link"><div class="mainbav-item">{{item.title}}</div></a></li>
+                        <li v-for="(item,index) in project" :key="index"><a class="mainbav-item" :href="'/page?id=' + item.id"><div class="mainbav-item">{{item.title}}</div></a></li>
+                        <li><a class="mainbav-item" href="/opus"><div class="mainbav-item">更多项目 》</div></a></li>
                     </div>
                 </el-col>
                 <el-col :span="4">
@@ -45,7 +47,8 @@
 
         <div class="footer-introduce">
             <div class="l">该网站是WeiVi的个人主页 感谢你的访问 遇到什么问题可以通过以上方式联系我</div>
-            <div class="r">© WeiVi 2020</div>
+            <div class="r">© WeiVi 2014-2020</div>
+            <div class="r">粤ICP备20033641号-1</div>
             <div class="r">网页插图来自网络</div>
         </div>
 
@@ -59,43 +62,51 @@
         data(){
             return{
                 weivi:[
-                    {title:'个人荣誉', link:''},
-                    {title:'自我介绍', link:''},
-                    {title:'招聘', link:''}
+                    // {title:'个人荣誉', link:''},
+                    {title:'自我介绍', link:'myintroduction'},
+                    // {title:'招聘', link:''}
                 ],
-                about:[
-                    {title:'作品', link:''},
-                    {title:'文章', link:''},
-                    {title:'项目', link:''}
+                about:[  
+                    {title:'作品', link:'/opus'},
+                    {title:'文章', link:'/article'},
+                    {title:'项目', link:'/proj'}
                 ],
                 article:[
-                    {title:'云视频解决方案', link:''},
-                    {title:'搭建vue+nw.js', link:''},
-                    {title:'更多文章》', link:''}
                 ],
                 more:[
-                    {title:'BiliBili', link:''},
-                    {title:'Github', link:''},
-                    {title:'WeChat', link:''},
-                    {title:'摄影作品', link:''}
+                    {title:'BiliBili', link:'https://space.bilibili.com/4028423'},
+                    {title:'Github', link:'https://github.com/weivis'},
+                    // {title:'WeChat', link:''},
+                    {title:'摄影作品', link:'/photo'}
                 ],
                 project:[
-                    {title:'伊莉雅Ai助手', link:''},
-                    {title:'300英雄游戏盒子', link:''},
-                    {title:'更多项目》', link:''}
                 ],
                 contact:[
-                    {title:'BiliBili私信', link:''},
-                    {title:'发送邮件到442981412@qq.com', link:''}
+                    {title:'BiliBili私信', link:'https://space.bilibili.com/4028423'},
+                    {title:'发送邮件到442981412@qq.com', link:'442981412@qq.com'}
                 ],
             }
         },
-        methods: { //事件处理器
-        },
         components: { //定义组件
         },
-        created() { //生命周期函数
-        }
+  created() {
+    this.query_list();
+  },
+  methods: {
+    query_list() {
+      this.$http
+        .index_dynamics_data()
+        .then(response => {
+          if (response.code == 200) {
+            this.project = response.data.project;
+            this.article = response.data.article;
+          }
+        })
+        .catch(error => {
+          console.log("error", error);
+        });
+    }
+  }
     }
 </script>
 

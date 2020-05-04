@@ -57,19 +57,31 @@ service.interceptors.response.use(
         router.push({ name: "login", params: { msg: res.msg } })
 
       } else {
-        Message({
-          message: res.msg,
-          type: 'error',
-          duration: 5 * 1000
-        })
+        if (res.msg != 'OK'){
+          Message({
+            message: res.msg,
+            type: 'error',
+            duration: 5 * 1000
+          })
+        }
       }
     } else {
       console.log('response 拦截器:', res.msg)
-      Message({
-        message: res.msg,
-        type: 'success',
-        duration: 5 * 1000
-      })
+      if (res.msg != 'OK'){
+        if (res.code == 200){
+          Message({
+            message: res.msg,
+            type: 'success',
+            duration: 5 * 1000
+          })
+        }else{
+          Message({
+            message: res.msg,
+            type: 'error',
+            duration: 5 * 1000
+          })
+        }
+      }
     }
     return res
   },

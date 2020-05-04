@@ -8,7 +8,7 @@ import '@/styles/common.scss' // global css
 import VueParticles from 'vue-particles'
 import '@/permission' // permission control
 import locale from 'element-ui/lib/locale/lang/zh-CN' // lang i18n
-
+import VueLive2d from 'vue-live2d-model' 
 import App from './App.vue'
 import router from './router'
 // import store from './store' 取消vuex
@@ -19,6 +19,7 @@ import * as StoreUser from './store/user'
 import Common from './Common'
 import Auth from './Auth'
 import * as api from './api'
+import Vue2Editor from "vue2-editor";
 
 Vue.prototype.$http = api
 Vue.prototype.Common = Common
@@ -36,7 +37,8 @@ Vue.prototype.LogoutUserInfo = StoreUser.RemoveUserInfo
 // Vue.use(ElementUI);
 Vue.use(ElementUI, { locale })
 Vue.use(VueParticles)
-
+Vue.use(VueLive2d)
+Vue.use(Vue2Editor);
 new Vue({
   el: '#app',
   router,

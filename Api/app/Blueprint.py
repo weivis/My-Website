@@ -1,11 +1,15 @@
 from app.auth import auth
 from app.article import article
 from app.upload import upload
+from app.index import index
+from app.photo import photo
 
 DEFAULT_BLUEPRINT = (
+    (index, '/index'),
     (auth, '/auth'),
     (article, '/article'),
-    (upload, '/upload')
+    (upload, '/upload'),
+    (photo, '/photo')
 )
 
 # 封装配置蓝本的函数

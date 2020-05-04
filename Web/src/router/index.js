@@ -17,6 +17,12 @@ const routes = [
         name: 'Home',
         component: () => import('@/views/Home/index'),
         meta: { pagename: 'My Website', title:'WeiVi的个人主页'}
+      },
+      {
+        path: '/myintroduction',
+        name: 'myintroduction',
+        component: () => import('@/views/Page/Myintroduction'),
+        meta: { pagename: 'My-introduction', title:'个人介绍'}
       }
     ]
   },
@@ -41,7 +47,7 @@ const routes = [
   },
   {
     // 上传文章
-    path: '/upload',
+    path: '/article-upload',
     component: Layout,
     children: [
       {
@@ -54,7 +60,7 @@ const routes = [
   },
   {
     // 管理
-    path: '/manager',
+    path: '/article-manager',
     component: Layout,
     children: [
       {
@@ -64,10 +70,23 @@ const routes = [
         meta: { pagename: 'Article-Manager', title:'文章管理'}
       },
       {
-        path: '/article-edit',
+        path: '/article-manager/edit',
         name: 'articleedit',
         component: () => import('@/views/Manager/ArticleEdit'),
         meta: { pagename: 'Article-Edit', title:'文章编辑'}
+      }
+    ]
+  },
+  {
+    // 推荐管理
+    path: '/recommend-manager',
+    component: Layout,
+    children: [
+      {
+        path: '/',
+        name: 'recommendlist',
+        component: () => import('@/views/Manager/RecommendList'),
+        meta: { pagename: 'Recommend-Manager', title:'推荐管理'}
       }
     ]
   },
@@ -87,6 +106,19 @@ const routes = [
         name: 'opusitem',
         component: () => import('@/views/Article/item/opusitem'),
         meta: { pagename: 'Design', title:'设计作品' }
+      }
+    ]
+  },
+  {
+    // 作品
+    path: '/page',
+    component: Layout,
+    children: [
+      {
+        path: '/page',
+        name: 'page',
+        component: () => import('@/views/Article/item/opusitem'),
+        meta: { pagename: 'Design', title:'文章' }
       }
     ]
   },

@@ -2,7 +2,7 @@
     <div class="Nav">
         <ul>
             <li v-for="(item,index) in nav" :key="index">
-                <a :href="item.link">{{ item.title }}</a>
+                <router-link :to="item.link">{{ item.title }}</router-link>
             </li>
         </ul>
     </div>
