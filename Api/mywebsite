@@ -10,11 +10,6 @@ server {
     access_log  /root/log/nginx/mywebsite.access.log;
     error_log  /root/log/nginx/mywebsite.error.log;
 
-    #location /api/ {
-    #    include     /etc/nginx/uwsgi_params;
-    #    uwsgi_pass  unix:/tmp/mywebsite.sock;
-    #}
-
     location /static {
         proxy_redirect      off;
         alias               /root/server/My-Website/Api/app/static;
@@ -23,10 +18,19 @@ server {
         add_header  Cache-Control   public;
     }
 
-    location / {
-        alias       /root/server/My-Website/Web/;
+    location /front/ {
+        alias       /root/server/My-Website/Web/dist/;
         add_header  Cache-Control   public;
-        try_files   $uri    /dist/index.html;
+        try_files   $uri    /front/index.html;
+    }
+	
+    location /front {
+    	try_files   $uri    /front/index.html;
+    	}
+
+    location / {
+        include     /etc/nginx/uwsgi_params;
+        uwsgi_pass  unix:/tmp/mywebsite.sock;
     }
 
 }
