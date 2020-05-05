@@ -10,7 +10,7 @@ server {
     access_log  /root/log/nginx/mywebsite.access.log;
     error_log  /root/log/nginx/mywebsite.error.log;
 
-    location /api {
+    location /api/ {
         include     /etc/nginx/uwsgi_params;
         uwsgi_pass  unix:/tmp/mywebsite.sock;
     }
