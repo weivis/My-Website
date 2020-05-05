@@ -24,7 +24,7 @@ server {
     }
 
     location / {
-        alias       /root/server/My-Website/Web/;
+        alias       /root/server/My-Website/Web/dist/;
         add_header  Cache-Control   public;
         try_files   $uri    /index.html;
     }
