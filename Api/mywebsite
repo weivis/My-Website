@@ -23,16 +23,10 @@ server {
         uwsgi_pass  unix:/tmp/mywebsite.sock;
     }
 
-    root /root/server/My-Website/Web/dist;
-    index index.html;
-
     location / {
-        try_files $uri $uri/ @router;
-        index index.html;
-    }
-
-    location @router {
-        rewrite ^.*$ /index.html last;
+      root   /root/server/My-Website/Web/dist;
+      index  index.html;
+      try_files $uri $uri /index.html;
     }
 
 }
