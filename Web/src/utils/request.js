@@ -3,7 +3,7 @@ import { Message } from 'element-ui'
 import Auth from '../Auth'
 import router from '../router'
 
-let HttpRoot = 'http://www.weivird.com/api'
+let HttpRoot = 'http://127.0.0.1:8080'
 
 // 创建axios实例
 const service = axios.create({
@@ -16,7 +16,7 @@ const service = axios.create({
 service.interceptors.request.use(
   config => {
     if (Auth.AuthUser()) {
-      console.log('>request拦截器被执行')
+      // console.log('>request拦截器被执行')
       const AuthUserData = Auth.AuthUserData()
       config.data['Token'] = AuthUserData.token
       // config.data['userid'] = AuthUserData.userid
@@ -24,7 +24,7 @@ service.interceptors.request.use(
     return config
   },
   error => {
-    console.log(error)
+    // console.log(error)
     Promise.reject(error)
   }
 )
@@ -37,13 +37,13 @@ service.interceptors.response.use(
      */
 
     const res = JSON.parse(JSON.stringify(response.data))
-    console.log('接口Return: ', res)
+    // console.log('接口Return: ', res)
 
     if (res && res.code !== 200) {
 
       if (res && res.code == 10000 || res.code == 10086) {
         // 如果code == 10000 or 10086 代表该用户的登录状态已经失效 清除登录状态并返回登录页面
-        console.log('10000 or 10086')
+        // console.log('10000 or 10086')
         Auth.Logout_user()
         localStorage.removeItem('UserName');
         localStorage.removeItem('UserId');
@@ -66,7 +66,7 @@ service.interceptors.response.use(
         }
       }
     } else {
-      console.log('response 拦截器:', res.msg)
+      // console.log('response 拦截器:', res.msg)
       if (res.msg != 'OK'){
         if (res.code == 200){
           Message({
@@ -86,7 +86,7 @@ service.interceptors.response.use(
     return res
   },
   error => {
-    console.log('err' + error) // for debug
+    // console.log('err' + error) // for debug
     Message({
       message: error.message,
       type: 'error',
