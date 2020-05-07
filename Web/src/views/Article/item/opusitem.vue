@@ -61,5 +61,6 @@ export default {
   }
   .content{
     margin-top: 30px;
+    .img{max-width: 100%;}
   }
 </style>
