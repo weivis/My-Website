@@ -5,6 +5,7 @@ from app.Extensions import db
 from flask_migrate import MigrateCommand, Migrate
 from flask_script import Manager, Server, Command
 from app.Models import db_Account, db_Article, db_Photo, db_System
+from app.Models.db_Account import Account
 
 from flask_bcrypt import generate_password_hash
 from datetime import datetime
@@ -24,7 +25,7 @@ def create_admin(email ,password, name):
         print('参数不齐全')
 
     else:
-        newadmin = db_Account()
+        newadmin = Account()
         newadmin.reg_time = datetime.now()
         newadmin.username = name
         newadmin.account_group = 1
