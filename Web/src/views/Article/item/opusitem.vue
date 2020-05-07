@@ -45,6 +45,10 @@ export default {
 }
 </script>
 
+<style>
+.img{max-width: 100%;}
+</style>
+
 <style lang="scss" scoped>
   .title{
     width: 100%;
