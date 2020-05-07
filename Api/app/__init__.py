@@ -5,7 +5,6 @@ from app import Config
 from app.Blueprint import config_blueprint
 from app.Extensions import config_extensions
 
-
 def config_errorhandler(app):
   
     # 错误页面配置

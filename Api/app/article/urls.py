@@ -1,6 +1,7 @@
 from app.article import article, views
 from app.Common import ReturnRequest
 from app.Middleware import requestPOST, TokenAuthPost
+from app.Extensions import cache
 
 @article.route('/edit', methods=["POST"])
 @requestPOST
@@ -48,11 +49,13 @@ def query_article(request):
                 "msg": "OK"
             }
     '''
-    c,m,d = views.query_article(request.json)
+    cache.set('act' + request.json.get('id'),views.query_article(request.json),timeout=160)
+    c,m,d = cache.get('act' + request.json.get('id'))
     return ReturnRequest(c,m,d)
 
 # 获取列表
 @article.route('/query-list', methods=["POST"])
+@cache.cached(timeout=60)
 @requestPOST
 def query_article_list(request):
     '''获取文章列表

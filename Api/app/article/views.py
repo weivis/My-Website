@@ -5,6 +5,7 @@ from datetime import datetime
 from app.Models.db_Article import Article
 from app.ModelSerialize import Serialize, SerializeQuerySet
 from app.Models.db_Account import Account
+from app.Extensions import cache
 
 def edit_article(request):
     id = request.get('id', None)
