@@ -5,7 +5,7 @@ from sqlalchemy.dialects.mysql import LONGTEXT
 
 class Photo(db.Model):
     
-    __tablename__ = 'Photo'
+    __tablename__ = 'photo'
 
     id = db.Column(db.Integer, primary_key=True)
     sort = db.Column(db.Integer) # 权重
