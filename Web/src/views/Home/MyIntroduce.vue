@@ -35,7 +35,7 @@
                               <div class="list-imgitembox">
 
                                 <div class="list-imgitemimgbox">
-                                  <el-image class="list-imgitem-img" :src="this.Common.httpUrl + item.url" fit='scale-down'/>
+                                  <el-image class="list-imgitem-img" :src="item.url" fit='scale-down'/>
                                 </div>
                                 <div class="list-imgitem-title">{{item.title}}</div>
                                 
@@ -121,19 +121,19 @@ export default {
         honour:[
           {
             title:'尼噗动漫视频网创始人',
-            url:"/static/il1.png"
+            url:"http://www.weivird.com/static/il1.png"
           },
           {
             title:'外管境外旅客护照信息提交系统开发组长',
-            url:"/static/il2.png"
+            url:"http://www.weivird.com/static/il2.png"
           },
           {
             title:'可识别全球护照的OCR核心研发者(投入使用中)',
-            url:"/static/il3.png"
+            url:"http://www.weivird.com/static/il3.png"
           },
           {
             title:'Yami!~动漫周边店创始人',
-            url:"/static/il4.png"
+            url:"http://www.weivird.com/static/il4.png"
           }
         ]
     };
