@@ -49,8 +49,14 @@ def query_article(request):
                 "msg": "OK"
             }
     '''
-    cache.set('act' + request.json.get('id'),views.query_article(request.json),timeout=160)
-    c,m,d = cache.get('act' + request.json.get('id'))
+    try:
+        # print('有缓存')
+        c,m,d = cache.get('act' + request.json.get('id'))
+    except:
+        # print('无缓存')
+        que = views.query_article(request.json)
+        cache.set('act' + request.json.get('id'),que,timeout=160)
+        c,m,d = que
     return ReturnRequest(c,m,d)
 
 # 获取列表
