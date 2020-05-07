@@ -9,7 +9,7 @@ let HttpRoot = 'http://www.weivird.com:8001'
 // 创建axios实例
 const service = axios.create({
   baseURL: HttpRoot, // api 的 base_url
-  timeout: 15000, // 请求超时时间
+  timeout: 80000, // 请求超时时间
   withCredentials: false
 })
 
