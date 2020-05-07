@@ -105,11 +105,11 @@ def query_article_list(request):
     '''
     try:
         # print('有缓存')
-        c,m,d = cache.get('actlis' + request.json.get('id'))
+        c,m,d = cache.get('actlis' + request.json.get('article_type'))
     except:
         # print('无缓存')
         que = views.query_article_list(request.json)
-        cache.set('actlis' + request.json.get('id'),que,timeout=60)
+        cache.set('actlis' + request.json.get('article_type'),que,timeout=60)
         c,m,d = que
     return ReturnRequest(c,m,d)
 
