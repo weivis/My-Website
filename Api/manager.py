@@ -28,7 +28,9 @@ def create_admin(email ,password, name):
         newadmin = Account()
         newadmin.reg_time = datetime.now()
         newadmin.username = name
+        newadmin.email = email
         newadmin.account_group = 1
+        newadmin.profile = 'default.png'
         newadmin.password = generate_password_hash(password)
         newadmin.status = 1
         
