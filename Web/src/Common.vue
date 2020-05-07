@@ -1,6 +1,6 @@
 <script type="text/javascript">
     // 定义一些公共的属性和方法
-    const httpUrl = 'http://127.0.0.1:8080'
+    const httpUrl = 'http://www.weivird.com/'
     const LoginUrl = '/auth/sign-in'
     const RegisterUrl = '/auth/register'
     const commonlink = {
@@ -19,15 +19,15 @@
                     {link:commonlink.github,title:'Github'}
                 ]
 
-    function commonFun() {
-        console.log("公共方法")
-    }
+    // function commonFun() {
+    //     console.log("公共方法")
+    // }
     // 暴露出这些属性和方法
     export default {
         LoginUrl,RegisterUrl,
         httpUrl,
         L_Nav,
-        R_Nav,
-        commonFun
+        R_Nav
+        // commonFun
     }
 </script>
