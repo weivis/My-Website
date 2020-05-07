@@ -61,7 +61,6 @@ def query_article(request):
 
 # 获取列表
 @article.route('/query-list', methods=["POST"])
-@cache.cached(timeout=60)
 @requestPOST
 def query_article_list(request):
     '''获取文章列表
@@ -104,7 +103,14 @@ def query_article_list(request):
             "msg": "OK"
             }
     '''
-    c,m,d = views.query_article_list(request.json)
+    try:
+        # print('有缓存')
+        c,m,d = cache.get('actlis' + request.json.get('id'))
+    except:
+        # print('无缓存')
+        que = views.query_article_list(request.json)
+        cache.set('actlis' + request.json.get('id'),que,timeout=60)
+        c,m,d = que
     return ReturnRequest(c,m,d)
 
 # 发表文章
