@@ -46,7 +46,7 @@ export default {
 </script>
 
 <style>
-.img{max-width: 100%;}
+  img{max-width: 100% !important;}
 </style>
 
 <style lang="scss" scoped>
@@ -66,5 +66,8 @@ export default {
   .content{
     margin-top: 30px;
     .img{max-width: 100%;}
+  }
+  p{
+    img{max-width: 100% !important;}
   }
 </style>

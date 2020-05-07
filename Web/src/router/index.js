@@ -68,9 +68,16 @@ const routes = [
         name: 'articlelist',
         component: () => import('@/views/Manager/ArticleList'),
         meta: { pagename: 'Article-Manager', title:'文章管理'}
-      },
+      }
+    ]
+  },
+  {
+    // 管理
+    path: '/article-edit',
+    component: Layout,
+    children: [
       {
-        path: '/article-manager/edit',
+        path: '/article-edit',
         name: 'articleedit',
         component: () => import('@/views/Manager/ArticleEdit'),
         meta: { pagename: 'Article-Edit', title:'文章编辑'}

@@ -37,7 +37,7 @@
         </el-table-column>
         <el-table-column label="操作" align="right">
           <template slot-scope="scope">
-            <el-button size="mini" @click="change(scope.$index, scope.row)">编辑</el-button>
+            <el-button size="mini"><a :href="'/article-edit?id=' + scope.row.id">编辑</a></el-button>
             <el-button size="mini" @click="change(scope.$index, scope.row, 2)" v-if="scope.row.status == 0 && scope.row.is_delete == 0" type="success">下架</el-button>
             <el-button size="mini" @click="change(scope.$index, scope.row, 1)" v-if="scope.row.status == 1 && scope.row.is_delete == 0" type="info">上架</el-button>
             <el-button size="mini" type="danger" @click="change(scope.$index, scope.row, 3)" v-if="scope.row.is_delete == 0">删除</el-button>
