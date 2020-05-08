@@ -18,7 +18,7 @@ server {
         add_header  Cache-Control   public;
     }
 
-    location /api/ {
+    location /api {
         include     /etc/nginx/uwsgi_params;
         uwsgi_pass  unix:/tmp/mywebsite.sock;
     }
