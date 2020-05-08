@@ -1,11 +1,5 @@
 server {
     listen 80;
-    server_name www.weivird.com;
-    rewrite ^(.*) https://www.weivird.com$1 permanent;
-}
-
-server {
-    listen 80;
     server_name weivird.com;
     rewrite ^(.*) https://www.weivird.com$1 permanent;
 }
