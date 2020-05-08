@@ -3,9 +3,9 @@ import { Message } from 'element-ui'
 import Auth from '../Auth'
 import router from '../router'
 
-let HttpRoot = 'http://www.weivird.com:8001'
+// let HttpRoot = 'http://www.weivird.com:8001'
 // let HttpRoot = 'http://127.0.0.1:8080/'
-// let HttpRoot = 'http://www.weivird.com/api'
+let HttpRoot = 'http://www.weivird.com/api'
 
 // 创建axios实例
 const service = axios.create({
