@@ -1,11 +1,5 @@
 server {
     listen 80;
-    server_name weivird.com;
-    rewrite ^(.*) https://www.weivird.com$1 permanent;
-}
-
-server {
-    listen 443;
     server_name www.weivird.com;
 
     rewrite_log             on;
@@ -13,20 +7,20 @@ server {
 
     client_max_body_size    1024m;
 
-    ssl on;
+    ssl off;
 
     #证书文件名称
-    ssl_certificate /home/ubuntu/server/My-Website/https_ssl/1_www.weivird.com_bundle.crt; 
+    ssl_certificate /home/ubuntu/server/My-Website/https_ssl/1_www.weivird.com_bundle.crt;
 
     #私钥文件名称
-    ssl_certificate_key /home/ubuntu/server/My-Website/https_ssl/2_www.weivird.com.key; 
+    ssl_certificate_key /home/ubuntu/server/My-Website/https_ssl/2_www.weivird.com.key;
     ssl_session_timeout 5m;
 
     #请按照以下协议配置
-    ssl_protocols TLSv1 TLSv1.1 TLSv1.2; 
+    ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
 
     #请按照以下套件配置，配置加密套件，写法遵循 openssl 标准。
-    ssl_ciphers ECDHE-RSA-AES128-GCM-SHA256:HIGH:!aNULL:!MD5:!RC4:!DHE; 
+    ssl_ciphers ECDHE-RSA-AES128-GCM-SHA256:HIGH:!aNULL:!MD5:!RC4:!DHE;
     ssl_prefer_server_ciphers on;
 
     access_log  /home/ubuntu/nginx_log/mywebsite.access.log;
