@@ -5,11 +5,11 @@ from app.index import index
 from app.photo import photo
 
 DEFAULT_BLUEPRINT = (
-    (index, '/index'),
-    (auth, '/auth'),
-    (article, '/article'),
-    (upload, '/upload'),
-    (photo, '/photo')
+    (index, '/api/index'),
+    (auth, '/api/auth'),
+    (article, '/api/article'),
+    (upload, '/api/upload'),
+    (photo, '/api/photo')
 )
 
 # 封装配置蓝本的函数
