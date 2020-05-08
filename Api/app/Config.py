@@ -19,7 +19,7 @@ SQLALCHEMY_TRACK_MODIFICATIONS = False
 # ----------------------------------------------------------------------
 
 # 服务器地址
-SERVER_GULAOBURL = 'http://www.weivird.com'
+SERVER_GULAOBURL = 'https://www.weivird.com'
 SERVER_STATICLOADURL = SERVER_GULAOBURL + '/static'
 # ----------------------------------------------------------------------
 

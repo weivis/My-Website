@@ -121,19 +121,19 @@ export default {
         honour:[
           {
             title:'尼噗动漫视频网创始人',
-            url:"http://www.weivird.com/static/il1.png"
+            url:"https://www.weivird.com/static/il1.png"
           },
           {
             title:'外管境外旅客护照信息提交系统开发组长',
-            url:"http://www.weivird.com/static/il2.png"
+            url:"https://www.weivird.com/static/il2.png"
           },
           {
             title:'可识别全球护照的OCR核心研发者(投入使用中)',
-            url:"http://www.weivird.com/static/il3.png"
+            url:"https://www.weivird.com/static/il3.png"
           },
           {
             title:'Yami!~动漫周边店创始人',
-            url:"http://www.weivird.com/static/il4.png"
+            url:"https://www.weivird.com/static/il4.png"
           }
         ]
     };

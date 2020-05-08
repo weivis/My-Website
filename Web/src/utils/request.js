@@ -3,7 +3,6 @@ import { Message } from 'element-ui'
 import Auth from '../Auth'
 import router from '../router'
 
-// let HttpRoot = 'http://www.weivird.com:8001'
 // let HttpRoot = 'http://127.0.0.1:8080/'
 let HttpRoot = 'https://www.weivird.com/api'
 

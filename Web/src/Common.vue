@@ -1,6 +1,6 @@
 <script type="text/javascript">
     // 定义一些公共的属性和方法
-    const httpUrl = 'http://www.weivird.com/'
+    const httpUrl = 'https://www.weivird.com/'
     const LoginUrl = '/auth/sign-in'
     const RegisterUrl = '/auth/register'
     const commonlink = {

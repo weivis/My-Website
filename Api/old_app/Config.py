@@ -20,5 +20,5 @@ SQLALCHEMY_TRACK_MODIFICATIONS = False
 # ----------------------------------------------------------------------
 
 # 服务器地址
-SERVER_GULAOBURL = 'http://127.0.0.1:8080'
+SERVER_GULAOBURL = 'https://127.0.0.1:8080'
 SERVER_STATICLOADURL = SERVER_GULAOBURL + '/static'
