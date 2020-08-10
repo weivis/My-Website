@@ -48,7 +48,7 @@
         <div class="footer-introduce">
             <div class="l">该网站是WeiVi的个人主页 感谢你的访问 遇到什么问题可以通过以上方式联系我</div>
             <div class="r">© WeiVi 2014-2020</div>
-            <div class="r">粤ICP备20033641号-1</div>
+            <div class="r">粤ICP备20033641号</div>
             <div class="r">网页插图来自网络</div>
         </div>
 
