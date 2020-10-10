@@ -23,11 +23,11 @@ SERVER_GULAOBURL = 'https://www.weivird.com'
 SERVER_STATICLOADURL = SERVER_GULAOBURL + '/static'
 # ----------------------------------------------------------------------
 
-MAIL_SERVER = 'smtp.163.com'
+MAIL_SERVER = ''
 MAIL_PORT = 25
 MAIL_USE_TLS = True
-MAIL_USERNAME = 'kol_email@163.com'
-MAIL_PASSWORD = 'Kolemail123456'
+MAIL_USERNAME = ''
+MAIL_PASSWORD = ''
 
 # ----------------------------------------------------------------------
 
